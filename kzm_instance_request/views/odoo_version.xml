@@ -4,7 +4,7 @@
 
     <record model="ir.ui.view" id="odoo_version_list_view">
       <field name="name">Odoo Version List</field>
-      <field name="model">odoo_version</field>
+      <field name="model">odoo.version</field>
       <field name="arch" type="xml">
 
         <tree>
@@ -17,7 +17,7 @@
 
       <record model="ir.ui.view" id="odoo_version_form_view">
         <field name="name">Odoo Version Formulaire</field>
-        <field name="model">odoo_version</field>
+        <field name="model">odoo.version</field>
         <field name="arch" type="xml">
 
         <form>
@@ -32,7 +32,7 @@
 
    <record id="odoo_version_view_search" model="ir.ui.view">
       <field name="name">Filtrage des Version Odoo </field>
-      <field name="model">odoo_version</field>
+      <field name="model">odoo.version</field>
       <field name="arch" type="xml">
 
         <search>
@@ -46,7 +46,7 @@
 
       <record id="odoo_version_action_window" model="ir.actions.act_window" >
           <field name="name">Odoo Version Window</field>
-          <field name="res_model">odoo_version</field>
+          <field name="res_model">odoo.version</field>
           <field name="type">ir.actions.act_window</field>
           <field name="view_mode">tree,form</field>
       </record>

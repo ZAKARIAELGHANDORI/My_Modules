@@ -27,6 +27,7 @@
         #'security/ir.odooversion.access.csv',
         'views/odoo_version.xml',
         'views/instances.xml',
+        'data/instancedata.xml',
     ],
     # only loaded in demonstration mode
     #'demo': [

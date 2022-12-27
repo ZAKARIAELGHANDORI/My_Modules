@@ -4,7 +4,7 @@
 
     <record model="ir.ui.view" id="kzm_instance_request.list_view">
       <field name="name">kzm_instance_request list</field>
-      <field name="model">kzm_instance_request</field>
+      <field name="model">kzm.instance.request</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
@@ -23,7 +23,7 @@
 
     <record model="ir.ui.view" id="kzm_instance_request.form_view">
       <field name="name">kzm_instance form</field>
-      <field name="model">kzm_instance_request</field>
+      <field name="model">kzm.instance.request</field>
       <field name="arch" type="xml">
         <form>
           <group>
@@ -44,7 +44,7 @@
 
        <record id="kzm_instance_view_search" model="ir.ui.view">
       <field name="name">Search by Designation , address , state </field>
-      <field name="model">kzm_instance_request</field>
+      <field name="model">kzm.instance.request</field>
       <field name="arch" type="xml">
 
         <search>
@@ -70,7 +70,7 @@
 <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
     <field name="name">Demande Instance</field>
     <field name="type">ir.actions.act_window</field>
-      <field name="res_model">kzm_instance_request</field>
+      <field name="res_model">kzm.instance.request</field>
     <field name="view_mode">tree,form</field>
 </record>
 

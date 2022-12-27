@@ -1,0 +1,18 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="kem_instance_data" model="kzm.instance.request">
+            <field name="name">odoo14</field>
+          <field name="address">192.168.10.1</field>
+          <field name="cpu">3</field>
+          <field name="ram">32</field>
+          <field name="disk">100</field>
+          <field name="url">url_2</field>
+          <field name = "state">traité</field>
+           <field name="limit_date">2022-12-31</field>
+          <field name="treat_date">2023-01-02 11:07:26</field>
+          <field name ="treat_duration">4.00</field>
+
+        </record>
+    </data>
+</odoo>

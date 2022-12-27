@@ -3,8 +3,8 @@
 from odoo import models, fields, api
 
 
-class KzmInstance(models.Model):
-     _name = 'kzm_instance_request'
+class KzmInstanceRequest(models.Model):
+     _name = 'kzm.instance.request'
      _description = "demande d'instance"
 
      name = fields.Char('Designation')
