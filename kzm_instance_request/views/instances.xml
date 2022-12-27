@@ -75,9 +75,12 @@
 </record>
 
 
-    <menuitem id="test_menu_root" name="Demande Instance Karizma">
-<!--    <menuitem id="test_model_menu_action" action="test_model_action" name="Menu2"/>-->
+    <menuitem id="test_menu_root" name="Demande Instance Karizma" web_icon="../static/description/icon.png">
+
     <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
+
+      <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"/>
+
    </menuitem>
   </data>
 </odoo>

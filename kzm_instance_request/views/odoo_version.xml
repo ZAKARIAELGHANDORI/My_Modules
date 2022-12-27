@@ -9,6 +9,8 @@
 
         <tree>
           <field name="name" />
+            <field name="create_date" />
+            <field name="create_uid" />
         </tree>
       </field>
     </record>
@@ -22,7 +24,7 @@
 
         <form>
             <group>
-          <field name="name" />
+               <field name="name" />
             </group>
         </form>
       </field>
@@ -37,6 +39,8 @@
 
         <search>
           <field name="name" />
+           <field name="create_date" />
+            <field name="create_uid" />
         </search>
 
     </field>
@@ -45,17 +49,16 @@
 
 
       <record id="odoo_version_action_window" model="ir.actions.act_window" >
-          <field name="name">Odoo Version Window</field>
+          <field name="name">Odoo Version</field>
           <field name="res_model">odoo.version</field>
           <field name="type">ir.actions.act_window</field>
           <field name="view_mode">tree,form</field>
       </record>
 
-    <menuitem id="test_menu_root" name="Odoo Versions">
-<!--    <menuitem id="test_model_menu_action" action="test_model_action" name="Menu2"/>-->
-    <menuitem id="session_model_menu_action" action="odoo_version_action_window"
-              name="My Versions"/>
-   </menuitem>
+<!--
+    <menuitem id="session_model_menu_action" parent="instances.menu_odoo_version"
+              name="Odoo Version"/>
+-->
 
   </data>
 </odoo>
