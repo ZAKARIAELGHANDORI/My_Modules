@@ -15,7 +15,7 @@ class KzmInstanceRequest(models.Model):
      ram = fields.Char('RAM')
      disk = fields.Char('DISK')
      url = fields.Char('URL')
-     state = fields.Selection([('brouillon','Draft'),('soumise','Submitted'),('en traitment','Processing'),('traité','Treaty')])
+     state = fields.Selection([('brouillon','Draft'),('soumise','Submitted'),('en traitment','Processing'),('traité','Treaty')],default='brouillon')
      limit_date = fields.Date('Processing deadline')
      treat_date = fields.Datetime('Processing date')
      treat_duration = fields.Float('Processing time')
