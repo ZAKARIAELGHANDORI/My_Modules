@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="kzm_instance_request.list_view">
+      <field name="name">kzm_instance_request list</field>
+      <field name="model">kzm_instance_request</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="address"/>
+          <field name="cpu"/>
+          <field name="ram"/>
+          <field name="disk"/>
+          <field name="url"/>
+          <field name = "state"/>
+           <field name="limit_date"/>
+          <field name="treat_date"/>
+          <field name ="treat_duration"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="kzm_instance_request.form_view">
+      <field name="name">kzm_instance form</field>
+      <field name="model">kzm_instance_request</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+          <field name="address"/>
+          <field name="cpu"/>
+          <field name="ram"/>
+          <field name="disk"/>
+          <field name="url"/>
+          <field name = "state"/>
+          <field name="limit_date"/>
+          <field name="treat_date"/>
+          <field name ="treat_duration"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+       <record id="kzm_instance_view_search" model="ir.ui.view">
+      <field name="name">Search by Designation , address , state </field>
+      <field name="model">kzm_instance_request</field>
+      <field name="arch" type="xml">
+
+        <search>
+          <field name="name" />
+        </search>
+
+        <search>
+          <field name="address" />
+        </search>
+
+        <search>
+          <field name="state" />
+        </search>
+
+
+
+    </field>
+   </record>
+
+
+
+
+<record id="kzm_instance_request_action_window" model="ir.actions.act_window">
+    <field name="name">Demande Instance</field>
+    <field name="type">ir.actions.act_window</field>
+      <field name="res_model">kzm_instance_request</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+    <menuitem id="test_menu_root" name="Demande Instance Karizma">
+<!--    <menuitem id="test_model_menu_action" action="test_model_action" name="Menu2"/>-->
+    <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
+   </menuitem>
+  </data>
+</odoo>
