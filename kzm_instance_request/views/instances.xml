@@ -16,10 +16,13 @@
           <field name="ram"/>
           <field name="disk"/>
           <field name="url"/>
-          <field name = "state"/>
            <field name="limit_date"/>
           <field name="treat_date"/>
           <field name ="treat_duration"/>
+
+            <field name="state" decoration-success="state == 'traite' or state == 'Processing'"
+                   decoration-info="state == 'brouillon' or state == 'soumise'" widget="badge"
+                   optional="show" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
         </tree>
 
       </field>
@@ -120,17 +123,19 @@
 
     <menuitem id="test_menu_root" name="Instance " web_icon="kzm_instance_request,/static/description/icon.png">
 
-    <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" />
 
+    <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window" />
 
 
       <menuitem id="Responsable_menu" action="kzm_instance_request_action_window" name="Responsables" />
       <menuitem id="Analyse_menu" action="kzm_instance_request_action_window" name="Analyse" />
       <menuitem id="Configuration_menu" action="kzm_instance_request_action_window" name="Configuration" />
 
+        <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" />
 
 
-      <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window" />
+
+
 
 
 
