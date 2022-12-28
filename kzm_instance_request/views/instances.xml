@@ -33,16 +33,16 @@
 
           <header>
 
-              <button name="action_draft" type="object" string="DRAFT"
-                      />
+              <button name="action_draft" string="DRAFT" type="object"
+                      attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}" class="oe_highlight" />
               <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object"
-                       />
+                     attrs="{'invisible':[('state','!=','brouillon')]}" class="oe_highlight"   />
               <button name="action_processing"  string="PROCESSING" type="object"
-                      />
-              <button name="action_treaty" type="object" string="TREATY" class="btn-primary"
-                      />
+                     attrs="{'invisible':[('state','!=','soumise')]}" class="oe_highlight"  />
+              <button name="action_treaty" type="object" string="TREATY"
+                      attrs="{'invisible':[('state','!=','en traitment')]}" class="oe_highlight" />
 
-                <field name="state" widget="statusbar" statusbar_visible="brouillon,soumise,traite,en traitement"/>
+                <field name="state" widget="statusbar" />
 
             </header>
 

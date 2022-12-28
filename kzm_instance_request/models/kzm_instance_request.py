@@ -21,11 +21,11 @@ class KzmInstanceRequest(models.Model):
      treat_duration = fields.Float('Processing time')
 
      def action_draft(self):
-          self.state="brouillon"
+        self.state="brouillon"
      def action_submitted(self):
           self.state ="soumise"
      def action_processing(self):
-          self.state="en traitement"
+          self.state="en traitment"
      def action_treaty(self):
           self.state="traite"
 
