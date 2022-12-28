@@ -1,6 +1,6 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
+    <!-- explicit list Vview definition -->
 
     <record model="ir.ui.view" id="kzm_instance_request.list_view">
       <field name="name">kzm_instance_request list</field>
@@ -81,9 +81,9 @@
 </record>
 
 
-    <menuitem id="test_menu_root" name="Request Instance " web_icon="../static/description/icon.png">
+    <menuitem id="test_menu_root" name="Instance " web_icon="../static/description/icon.png">
 
-    <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes"/>
+    <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" />
 
       <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"/>
 
