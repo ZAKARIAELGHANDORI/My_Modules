@@ -6,6 +6,9 @@
       <field name="name">kzm_instance_request list</field>
       <field name="model">kzm.instance.request</field>
       <field name="arch" type="xml">
+        <div class="oe_button_box" name="button_box">
+
+        </div>
         <tree>
           <field name="name"/>
           <field name="address"/>
@@ -18,6 +21,7 @@
           <field name="treat_date"/>
           <field name ="treat_duration"/>
         </tree>
+
       </field>
     </record>
 
@@ -26,18 +30,51 @@
       <field name="model">kzm.instance.request</field>
       <field name="arch" type="xml">
         <form>
-          <group>
-            <field name="name"/>
-          <field name="address"/>
-          <field name="cpu"/>
-          <field name="ram"/>
-          <field name="disk"/>
-          <field name="url"/>
-          <field name = "state"/>
-          <field name="limit_date"/>
-          <field name="treat_date"/>
-          <field name ="treat_duration"/>
+
+          <header>
+
+              <button name="action_draft" type="object" string="DRAFT"
+                      />
+              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object"
+                       />
+              <button name="action_processing"  string="PROCESSING" type="object"
+                      />
+              <button name="action_treaty" type="object" string="TREATY" class="btn-primary"
+                      />
+
+                <field name="state" widget="statusbar" statusbar_visible="brouillon,soumise,traite,en traitement"/>
+
+            </header>
+
+          <sheet>
+
+
+      <group>
+          <group >
+            <field name="address"/>
+            <field name="url"/>
           </group>
+
+            <group>
+              <field name="cpu"/>
+              <field name="ram"/>
+              <field name="disk"/>
+            </group>
+
+            <group>
+              <field name="name"/>
+              <field name = "state"/>
+
+            </group>
+
+            <group>
+              <field name="limit_date"/>
+              <field name="treat_date"/>
+              <field name ="treat_duration"/>
+            </group>
+
+       </group>
+          </sheet>
         </form>
       </field>
     </record>
@@ -81,12 +118,23 @@
 </record>
 
 
-    <menuitem id="test_menu_root" name="Instance " web_icon="../static/description/icon.png">
+    <menuitem id="test_menu_root" name="Instance " web_icon="kzm_instance_request,/static/description/icon.png">
 
     <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" />
 
-      <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"/>
+
+
+      <menuitem id="Responsable_menu" action="kzm_instance_request_action_window" name="Responsables" />
+      <menuitem id="Analyse_menu" action="kzm_instance_request_action_window" name="Analyse" />
+      <menuitem id="Configuration_menu" action="kzm_instance_request_action_window" name="Configuration" />
+
+
+
+      <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window" />
+
+
 
    </menuitem>
+
   </data>
 </odoo>
