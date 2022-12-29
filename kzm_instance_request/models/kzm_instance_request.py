@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from datetime import datetime
 from odoo import models, fields, api
 
 
@@ -28,6 +28,18 @@ class KzmInstanceRequest(models.Model):
           self.state="en traitment"
      def action_treaty(self):
           self.state="traite"
+
+     def action_scheduled_day():
+          t1 = daten=datetime.datetime.now()
+          t1 = datetime.strptime(t1, '%a %d %b %Y %H:%M:%S %z')
+          t2 = limit_date
+          t2 = datetime.strptime(t2, '%a %d %b %Y %H:%M:%S %z')
+          days = int(abs(t1 - t2).total_seconds())
+          if days >= 432000 :
+               self.state="treaty"
+
+
+
 
 
 

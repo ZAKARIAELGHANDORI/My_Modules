@@ -10,7 +10,26 @@
           <field name="code">records.action_treaty()</field>
 
 
+   </record>  <!-- server action-->
+
+       <!-- scheduled action-->
+
+      <record id="pass_all_to_treaty_after_5_days" model="ir.cron">
+         <field name="name">To treaty state after 5 days</field>
+         <field name="model_id" ref="model_kzm_instance_request"/>
+          <field name="type">ir.actions.server</field>
+          <field name="state">code</field>
+          <field name="code">records.action_scheduled_day()</field>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+
+
    </record>
+
+
+
+      <!-- scheduled action-->
 
     <!-- explicit list Vview definition -->
 
