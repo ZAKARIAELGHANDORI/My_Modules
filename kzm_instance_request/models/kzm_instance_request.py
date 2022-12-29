@@ -8,7 +8,7 @@ class KzmInstanceRequest(models.Model):
      _description = "demande d'instance"
 
      name = fields.Char('Designation')
-     #user = create_uid('Crée par')
+
      address = fields.Char('Address IP')
      actif = fields.Boolean(string="Actif by default", default=True)
      cpu = fields.Char('CPU')
@@ -28,5 +28,6 @@ class KzmInstanceRequest(models.Model):
           self.state="en traitment"
      def action_treaty(self):
           self.state="traite"
+
 
 
