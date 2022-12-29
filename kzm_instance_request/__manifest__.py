@@ -24,6 +24,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/odoo_version.xml',
         'views/instances.xml',
         'data/instancedata.xml',
