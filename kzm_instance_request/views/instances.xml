@@ -1,5 +1,17 @@
 <odoo>
   <data>
+      <!-- server action-->
+      <record id="pass_all_to_treaty" model="ir.actions.server">
+         <field name="name">To treaty state</field>
+         <field name="model_id" ref="model_kzm_instance_request"/>
+          <field name="binding_model_id" ref="model_kzm_instance_request"/>
+          <field name="type">ir.actions.server</field>
+          <field name="state">code</field>
+          <field name="code">records.action_treaty()</field>
+
+
+   </record>
+
     <!-- explicit list Vview definition -->
 
     <record model="ir.ui.view" id="kzm_instance_request.list_view">
@@ -165,13 +177,6 @@
 
          <menuitem id="Analyse_menu" action="kzm_instance_request_action_window" name="Analyse" parent="test_menu_root"/>
          <menuitem id="Configuration_menu" action="kzm_instance_request_action_window" name="Configuration" parent="test_menu_root"/>
-
-
-
-
-
-
-
 
 
 
