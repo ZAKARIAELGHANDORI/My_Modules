@@ -69,13 +69,13 @@
 
           <header>
 
-              <button name="action_draft" string="DRAFT" type="object" groups="kzm_instance_request.user_group"
+              <button name="action_draft" string="DRAFT" type="object"
                       attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}" class="oe_highlight" />
-              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object" groups="kzm_instance_request.user_group"
+              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object"
                      attrs="{'invisible':[('state','!=','brouillon')]}" class="oe_highlight"   />
-              <button name="action_processing"  string="PROCESSING" type="object"
+              <button name="action_processing"  string="PROCESSING" type="object" groups="kzm_instance_request.manager_group"
                      attrs="{'invisible':[('state','!=','soumise')]}" class="oe_highlight"  />
-              <button name="action_treaty" type="object" string="TREATY"
+              <button name="action_treaty" type="object" string="TREATY" groups="kzm_instance_request.manager_group"
                       attrs="{'invisible':[('state','!=','en traitment')]}" class="oe_highlight" />
 
                 <field name="state" widget="statusbar" />
@@ -189,7 +189,7 @@
                   name="Mes demandes" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
          <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"
-                   parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
+                   parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
 
          <menuitem id="Responsable_menu" action="kzm_instance_request_action_window"
