@@ -19,11 +19,11 @@
     'version': '16.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
 
     # always loaded
     'data': [
-
+        'data/activity.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/odoo_version.xml',
@@ -32,10 +32,9 @@
         'data/instancedata.xml',
         'data/odoo_version.xml',
 
-
     ],
     # only loaded in demonstration mode
-    #'demo': [
-     #   'demo/demo.xml',
-    #],
+    # 'demo': [
+    #   'demo/demo.xml',
+    # ],
 }

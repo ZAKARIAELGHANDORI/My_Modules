@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="activity_mail_a_traite" model="mail.activity.type">
+            <field name="name">Request to submit</field>
+            <field name="res_model">kzm.instance.request</field>
+
+
+
+        </record>
+
+
+
+    </data>
+
+</odoo>
