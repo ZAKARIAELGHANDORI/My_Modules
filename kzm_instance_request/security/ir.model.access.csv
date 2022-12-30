@@ -1,9 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_kzm_instance_request_user,kzm_instance_request_user,model_kzm_instance_request,user_group,1,1,1,0
-access_odoo_version_user,odoo_version_user,model_odoo_version,user_group,1,0,0,0
-access_kzm_instance_request_manager,kzm_instance_request_manager,model_kzm_instance_request,manager_group,1,1,1,1
-access_kzm_instance_request_admin,kzm_instance_request_admin,model_kzm_instance_request,admin_group,1,1,1,1
-access_odoo_version_admin,odoo_version_admin,model_odoo_version,admin_group,1,1,1,1
+access_kzm_instance_request_user,kzm_instance_request_user,model_kzm_instance_request,kzm_instance_request.user_group,1,1,1,0
+access_odoo_version_user,odoo_version_user,model_odoo_version,kzm_instance_request.user_group,1,0,0,0
+access_kzm_instance_request_manager,kzm_instance_request_manager,model_kzm_instance_request,kzm_instance_request.manager_group,1,1,1,1
+access_kzm_instance_request_admin,kzm_instance_request_admin,model_kzm_instance_request,kzm_instance_request.admin_group,1,1,1,1
+access_odoo_version_admin,odoo_version_admin,model_odoo_version,kzm_instance_request.admin_group,1,1,1,1
 
 
 

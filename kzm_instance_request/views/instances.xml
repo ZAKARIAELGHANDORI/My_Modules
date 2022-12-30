@@ -1,210 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data>
-      <!-- server action-->
-      <record id="pass_all_to_treaty" model="ir.actions.server">
-         <field name="name">To treaty state</field>
-         <field name="model_id" ref="model_kzm_instance_request"/>
-          <field name="binding_model_id" ref="model_kzm_instance_request"/>
-          <field name="type">ir.actions.server</field>
-          <field name="state">code</field>
-          <field name="code">records.action_treaty()</field>
+    <data>
+
+
+        <!-- server action-->
+        <record id="pass_all_to_treaty" model="ir.actions.server">
+            <field name="name">To treaty state</field>
+            <field name="model_id" ref="model_kzm_instance_request"/>
+            <field name="binding_model_id" ref="model_kzm_instance_request"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">records.action_treaty()</field>
+
+
+        </record>  <!-- server action-->
+
+        <!-- scheduled action-->
+
+        <record id="pass_all_to_treaty_after_5_days" model="ir.cron">
+            <field name="name">To treaty state after 5 days</field>
+            <field name="model_id" ref="model_kzm_instance_request"/>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">model.action_scheduled_day()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+
+
+        </record>
+
+
+        <!-- scheduled action-->
+
+        <!-- explicit list View definition -->
+
+        <record model="ir.ui.view" id="kzm_instance_request.list_view">
+            <field name="name">kzm_instance_request list</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+
+
+                <tree>
+
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="cpu"/>
+                    <field name="ram"/>
+                    <field name="disk"/>
+                    <field name="url"/>
+                    <field name="limit_date"/>
+                    <field name="treat_date"/>
+                    <field name="treat_duration"/>
+
+                    <field name="state" decoration-success="state == 'traite' or state == 'Processing'"
+                           decoration-info="state == 'brouillon' or state == 'soumise'" widget="badge"
+                           optional="show" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
+
+                </tree>
+
+           <!--
+                <button name="action_draft" string="DRAFT" type="object"
+                        attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}"/>
+                <button name="action_submitted" id="action_confirm" string="SUBMITTED" type="object"
+                        attrs="{'invisible':[('state','!=','brouillon')]}"/>
+                <button name="action_processing" string="PROCESSING" type="object"
+                        groups="kzm_instance_request.manager_group" attrs="{'invisible':[('state','!=','soumise')]}"/>
+                <button name="action_treaty" type="object" string="TREATY" groups="kzm_instance_request.manager_group"
+                        attrs="{'invisible':[('state','!=','en traitment')]}"/>
+
+            -->
+            </field>
+
+        </record>
+
+
+        <record model="ir.ui.view" id="kzm_instance_request.form_view">
+            <field name="name">kzm_instance form</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <header>
+
+                        <button name="action_draft" string="DRAFT" type="object"
+                                attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}"
+                                class="oe_highlight"/>
+                        <button name="action_submitted" id="action_confirm" string="SUBMITTED" type="object"
+                                attrs="{'invisible':[('state','!=','brouillon')]}" class="oe_highlight"/>
+                        <button name="action_processing" string="PROCESSING" type="object"
+                                groups="kzm_instance_request.manager_group"
+                                attrs="{'invisible':[('state','!=','soumise')]}" class="oe_highlight"/>
+                        <button name="action_treaty" type="object" string="TREATY"
+                                groups="kzm_instance_request.manager_group"
+                                attrs="{'invisible':[('state','!=','en traitment')]}" class="oe_highlight"/>
+
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+
+                    <sheet>
+
+
+                        <group>
+                            <group>
+                                <field name="address" attrs="{'invisible':[('state','!=','traite')]}"/>
+                                <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                            </group>
+
+                            <group>
+                                <field name="cpu" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="ram" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="disk" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                            </group>
+
+                            <group>
+                                <field name="name" required="true" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <!-- <field name = "state" attrs="{'readonly':[('state', '=', 'traite')]}" /> -->
+
+                            </group>
+
+                            <group>
+                                <field name="limit_date" required="true"
+                                       attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="treat_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="treat_duration" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="kzm_instance_view_search" model="ir.ui.view">
+            <field name="name">Search by Designation , address , state</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+
+                <search>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="state"/>
+                </search>
+
+            </field>
+        </record>
+
+        <record id="kzm_instance_view_search_demandes2" model="ir.ui.view">
+            <field name="name">Search by cpu ram</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+
+                <search>
+                    <field name="cpu"/>
+                    <field name="ram"/>
+                </search>
+
+            </field>
+        </record>
+
+        <!-- ok-->
+
+
+        <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
+            <field name="name">Demande Instance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kzm.instance.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('create_uid','=',uid)]</field>
+
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first instance
+                </p>
+            </field>
+        </record>
+
+        <record id="a_valider_action_window" model="ir.actions.act_window">
+            <field name="name">Demande Instance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kzm.instance.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|',('state','=','soumise'),('state','=','en traitment')]</field>
+
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first instance
+                </p>
+            </field>
+        </record>
+
+        <record id="tout_action_window" model="ir.actions.act_window">
+            <field name="name">Demande Instance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kzm.instance.request</field>
+            <field name="view_mode">tree,form</field>
+
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first instance
+                </p>
+            </field>
+        </record>
+
+        <record id="action_mes_demandes2" model="ir.actions.act_window">
+            <field name="name">My Request 2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kzm.instance.request</field>
+            <field name="view_mode">tree,form</field>
 
 
 
-
-   </record>  <!-- server action-->
-
-       <!-- scheduled action-->
-
-      <record id="pass_all_to_treaty_after_5_days" model="ir.cron">
-         <field name="name">To treaty state after 5 days</field>
-         <field name="model_id" ref="model_kzm_instance_request"/>
-          <field name="type">ir.actions.server</field>
-          <field name="state">code</field>
-          <field name="code">model.action_scheduled_day()</field>
-          <field name="interval_number">1</field>
-          <field name="interval_type">days</field>
-          <field name="numbercall">-1</field>
+            <field name="search_view_id" ref="kzm_instance_view_search_demandes2"/>
+        </record>
 
 
-   </record>
-
-
-
-      <!-- scheduled action-->
-
-    <!-- explicit list Vview definition -->
-
-    <record model="ir.ui.view" id="kzm_instance_request.list_view">
-      <field name="name">kzm_instance_request list</field>
-      <field name="model">kzm.instance.request</field>
-      <field name="arch" type="xml">
-        <div class="oe_button_box" name="button_box">
-
-        </div>
-        <tree>
-          <field name="name"/>
-          <field name="address"/>
-          <field name="cpu"/>
-          <field name="ram"/>
-          <field name="disk"/>
-          <field name="url"/>
-           <field name="limit_date"/>
-          <field name="treat_date"/>
-          <field name ="treat_duration"/>
-
-            <field name="state" decoration-success="state == 'traite' or state == 'Processing'"
-                   decoration-info="state == 'brouillon' or state == 'soumise'" widget="badge"
-                   optional="show" on_change="1" modifiers="{&quot;readonly&quot;: true}"/>
-        </tree>
-
-      </field>
-    </record>
-
-    <record model="ir.ui.view" id="kzm_instance_request.form_view" >
-      <field name="name">kzm_instance form</field>
-      <field name="model">kzm.instance.request</field>
-      <field name="arch" type="xml">
-        <form>
-
-          <header>
-
-              <button name="action_draft" string="DRAFT" type="object"
-                      attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}" class="oe_highlight" />
-              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object"
-                     attrs="{'invisible':[('state','!=','brouillon')]}" class="oe_highlight"   />
-              <button name="action_processing"  string="PROCESSING" type="object" groups="kzm_instance_request.manager_group"
-                     attrs="{'invisible':[('state','!=','soumise')]}" class="oe_highlight"  />
-              <button name="action_treaty" type="object" string="TREATY" groups="kzm_instance_request.manager_group"
-                      attrs="{'invisible':[('state','!=','en traitment')]}" class="oe_highlight" />
-
-                <field name="state" widget="statusbar" />
-
-            </header>
-
-          <sheet>
-
-
-      <group>
-          <group >
-            <field name="address" attrs="{'invisible':[('state','!=','traite')]}"  />
-            <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-          </group>
-
-            <group>
-              <field name="cpu" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-              <field name="ram" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-              <field name="disk" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-            </group>
-
-            <group>
-              <field name="name" required="true" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-              <field name = "state" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-
-            </group>
-
-            <group>
-              <field name="limit_date" required="true" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-              <field name="treat_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-              <field name ="treat_duration" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-            </group>
-
-       </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-       <record id="kzm_instance_view_search" model="ir.ui.view">
-      <field name="name">Search by Designation , address , state </field>
-      <field name="model">kzm.instance.request</field>
-      <field name="arch" type="xml">
-
-        <search>
-          <field name="name" />
-        </search>
-
-        <search>
-          <field name="address" />
-        </search>
-
-        <search>
-          <field name="state" />
-        </search>
-
-
-
-    </field>
-   </record>
-
-<!-- ok-->
-
-
-<record id="kzm_instance_request_action_window" model="ir.actions.act_window">
-    <field name="name">Demande Instance</field>
-    <field name="type">ir.actions.act_window</field>
-      <field name="res_model">kzm.instance.request</field>
-    <field name="view_mode">tree,form</field>
-    <field name="domain">[('create_uid','=',uid)]</field>
-
-     <field name="help" type="html">
-       <p class="o_view_nocontent_smiling_face">
-         Create your first instance
-       </p>
-     </field>
-</record>
-
-      <record id="a_valider_action_window" model="ir.actions.act_window">
-    <field name="name">Demande Instance</field>
-    <field name="type">ir.actions.act_window</field>
-      <field name="res_model">kzm.instance.request</field>
-    <field name="view_mode">tree,form</field>
-    <field name="domain">['|',('state','=','soumise'),('state','=','en traitment')]</field>
-
-     <field name="help" type="html">
-       <p class="o_view_nocontent_smiling_face">
-         Create your first instance
-       </p>
-     </field>
-</record>
-
-      <record id="tout_action_window" model="ir.actions.act_window">
-    <field name="name">Demande Instance</field>
-    <field name="type">ir.actions.act_window</field>
-      <field name="res_model">kzm.instance.request</field>
-    <field name="view_mode">tree,form</field>
-
-     <field name="help" type="html">
-       <p class="o_view_nocontent_smiling_face">
-         Create your first instance
-       </p>
-     </field>
-</record>
-
-
-        <menuitem id="test_menu_root" name="Instance " web_icon="kzm_instance_request,/static/description/icon.png"/>
+        <menuitem id="test_menu_root" name="Instance " web_icon="kzm_instance_request,/static/description/icon.png"
+                  groups="kzm_instance_request.user_group"/>
 
 
         <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window"
-                  name="Mes demandes" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
+                  name="My Requests" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
-         <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"
-                   parent="test_menu_root" groups="kzm_instance_request.user_group"/>
+        <menuitem id="session_model_menu_action_2" action="action_mes_demandes2"
+                  name="My Requests 2" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
-
-         <menuitem id="Responsable_menu" action="kzm_instance_request_action_window"
-                   name="Manager" parent="test_menu_root" groups="kzm_instance_request.manager_group"/>
-         <menuitem id="menu_a_valider" name="To be validated"
-                   action="a_valider_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
-         <menuitem id="menu_all" name="All"
-                   action="tout_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
-
-         <menuitem id="Analyse_menu" action="kzm_instance_request_action_window"
-                   name="Analyse" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
-         <menuitem id="Configuration_menu" action="kzm_instance_request_action_window"
-                   name="Configuration" parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
+        <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"
+                  parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
 
+        <menuitem id="Responsable_menu" action="kzm_instance_request_action_window"
+                  name="Manager" parent="test_menu_root" groups="kzm_instance_request.manager_group"/>
+        <menuitem id="menu_a_valider" name="To be validated"
+                  action="a_valider_action_window" parent="Responsable_menu"
+                  groups="kzm_instance_request.manager_group"/>
+        <menuitem id="menu_all" name="All"
+                  action="tout_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
 
-  </data>
+        <menuitem id="Analyse_menu" action="kzm_instance_request_action_window"
+                  name="Analyse" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
+        <menuitem id="Configuration_menu" action="kzm_instance_request_action_window"
+                  name="Configuration" parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
+
+
+    </data>
 </odoo>
