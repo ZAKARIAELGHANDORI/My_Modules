@@ -10,6 +10,8 @@
           <field name="code">records.action_treaty()</field>
 
 
+
+
    </record>  <!-- server action-->
 
        <!-- scheduled action-->
@@ -19,7 +21,7 @@
          <field name="model_id" ref="model_kzm_instance_request"/>
           <field name="type">ir.actions.server</field>
           <field name="state">code</field>
-          <field name="code">records.action_scheduled_day()</field>
+          <field name="code">model.action_scheduled_day()</field>
           <field name="interval_number">1</field>
           <field name="interval_type">days</field>
           <field name="numbercall">-1</field>
@@ -67,9 +69,9 @@
 
           <header>
 
-              <button name="action_draft" string="DRAFT" type="object"
+              <button name="action_draft" string="DRAFT" type="object" groups="kzm_instance_request.user_group"
                       attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}" class="oe_highlight" />
-              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object"
+              <button name="action_submitted" id="action_confirm"  string="SUBMITTED"  type="object" groups="kzm_instance_request.user_group"
                      attrs="{'invisible':[('state','!=','brouillon')]}" class="oe_highlight"   />
               <button name="action_processing"  string="PROCESSING" type="object"
                      attrs="{'invisible':[('state','!=','soumise')]}" class="oe_highlight"  />
@@ -85,7 +87,7 @@
 
       <group>
           <group >
-            <field name="address" attrs="{'invisible':[('state','!=','traite')], 'readonly':[('state', '=', 'traite')]}"  />
+            <field name="address" attrs="{'invisible':[('state','!=','traite')]}"  />
             <field name="url" attrs="{'readonly':[('state', '=', 'traite')]}"/>
           </group>
 
@@ -183,19 +185,24 @@
         <menuitem id="test_menu_root" name="Instance " web_icon="kzm_instance_request,/static/description/icon.png"/>
 
 
-        <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window" name="Mes demandes" parent="test_menu_root" />
+        <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window"
+                  name="Mes demandes" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
 
-         <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window" parent="test_menu_root"/>
+         <menuitem id="menu_odoo_version" name="Odoo Version" action="odoo_version_action_window"
+                   parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
 
 
-         <menuitem id="Responsable_menu" action="kzm_instance_request_action_window" name="Manager" parent="test_menu_root"/>
+         <menuitem id="Responsable_menu" action="kzm_instance_request_action_window"
+                   name="Manager" parent="test_menu_root" groups="kzm_instance_request.manager_group"/>
          <menuitem id="menu_a_valider" name="To be validated"
-                   action="a_valider_action_window" parent="Responsable_menu"/>
+                   action="a_valider_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
          <menuitem id="menu_all" name="All"
-                   action="tout_action_window" parent="Responsable_menu"/>
+                   action="tout_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
 
-         <menuitem id="Analyse_menu" action="kzm_instance_request_action_window" name="Analyse" parent="test_menu_root"/>
-         <menuitem id="Configuration_menu" action="kzm_instance_request_action_window" name="Configuration" parent="test_menu_root"/>
+         <menuitem id="Analyse_menu" action="kzm_instance_request_action_window"
+                   name="Analyse" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
+         <menuitem id="Configuration_menu" action="kzm_instance_request_action_window"
+                   name="Configuration" parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
 
 
 

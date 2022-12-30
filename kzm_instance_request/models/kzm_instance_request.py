@@ -29,14 +29,30 @@ class KzmInstanceRequest(models.Model):
      def action_treaty(self):
           self.state="traite"
 
-     def action_scheduled_day():
-          t1 = daten=datetime.datetime.now()
-          t1 = datetime.strptime(t1, '%a %d %b %Y %H:%M:%S %z')
-          t2 = limit_date
-          t2 = datetime.strptime(t2, '%a %d %b %Y %H:%M:%S %z')
-          days = int(abs(t1 - t2).total_seconds())
-          if days >= 432000 :
-               self.state="treaty"
+
+     def action_scheduled_day(self):
+          limit_date = self.env['kzm.instance.request'].search([])
+          date_l = limit_date.mapped('limit_date')
+
+          for date in date_l:
+             t1 =datetime.now()
+             t1 = datetime.strptime(str(t1), '%Y-%m-%d %H:%M:%S.%f')
+             t2 = date
+             t2 = datetime.strptime(str(t2), '%Y-%m-%d')
+             days = int(abs(t1 - t2).total_seconds())
+             print(days)
+             if days >= 432000 :
+
+                # make sure 'state' is up-to-date in database
+                self.env['kzm.instance.request'].flush_model(['state'])
+
+                self.env.cr.execute("UPDATE kzm_instance_request SET state=%s WHERE limit_date=%s", ['soumise', date])
+
+                # invalidate 'state' from the cache
+                self.env['kzm.instance.request'].invalidate_model(['state'])
+
+
+
 
 
 
