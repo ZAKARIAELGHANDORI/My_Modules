@@ -18,12 +18,12 @@
             <field name="email_from">{{ (user.email) }}</field>
             <field name="email_to">{{ (user.email) }}</field>
             <field name="body_html" type="html">
-                <br>
+
                     <h3>Bonjour, Veuillez bien créer une instance
                         <t t-out="object.name"></t>
                         avec comme performances :
                     </h3>
-                    <br></br>
+                   <br></br>
 
                     <table border="1px black solid">
                         <tr>
@@ -43,11 +43,11 @@
                             </td>
                         </tr>
                     </table>
-                </br>
+                <br></br>
 
                     <h3>Cordialement</h3>
 
-                </div>
+
 
             </field>
         </record>
