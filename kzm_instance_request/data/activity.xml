@@ -6,11 +6,79 @@
             <field name="res_model">kzm.instance.request</field>
 
 
-
         </record>
 
 
+        <record id="email_template_create_instance" model="mail.template">
+            <field name="name">Request for create an instance</field>
 
+            <field name="model_id" ref="kzm_instance_request.model_kzm_instance_request"/>
+
+            <field name="subject">Create Instance</field>
+            <field name="email_from">{{ (user.email) }}</field>
+            <field name="email_to">{{ (user.email) }}</field>
+            <field name="body_html" type="html">
+                <br>
+                    <h3>Bonjour, Veuillez bien créer une instance
+                        <t t-out="object.name"></t>
+                        avec comme performances :
+                    </h3>
+                    <br></br>
+
+                    <table border="1px black solid">
+                        <tr>
+                            <th>cpu</th>
+                            <th>ram</th>
+                            <th>disk</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-out="object.cpu"></t>
+                            </td>
+                            <td>
+                                <t t-out="object.ram"></t>
+                            </td>
+                            <td>
+                                <t t-out="object.disk"></t>
+                            </td>
+                        </tr>
+                    </table>
+                </br>
+
+                    <h3>Cordialement</h3>
+
+                </div>
+
+            </field>
+        </record>
+
+
+        <record id="email_template_instance_cree" model="mail.template">
+            <field name="name">Instance created</field>
+
+            <field name="model_id" ref="kzm_instance_request.model_kzm_instance_request"/>
+
+            <field name="subject">Instance Created</field>
+            <field name="email_from">{{ (user.email) }}</field>
+            <field name="email_to">{{ (user.email) }}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <h3>Bonjour, </h3>
+                        <br/>
+                        <h3>Votre instance <t t-out="object.name"></t>
+                            de l’instance a bien été crée. Elle est accessible sur le lien
+                            <t t-out="object.address"></t> </h3>
+
+                    <br></br>
+
+
+
+                    <h3>Cordialement</h3>
+
+                </div>
+
+            </field>
+        </record>
     </data>
 
 </odoo>

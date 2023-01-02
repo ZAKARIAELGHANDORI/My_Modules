@@ -23,9 +23,9 @@
 
     # always loaded
     'data': [
-        'data/activity.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/activity.xml',
         'views/odoo_version.xml',
         'views/instances.xml',
 

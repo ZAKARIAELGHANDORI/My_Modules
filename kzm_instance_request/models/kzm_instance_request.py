@@ -5,9 +5,10 @@ from odoo import models, fields, api
 
 class KzmInstanceRequest(models.Model):
      _name = 'kzm.instance.request'
+     _inherit = ['mail.activity.mixin','mail.thread']
      _description = "demande d'instance"
 
-     name = fields.Char(string='Designation')
+     name = fields.Char(string='Designation' , tracking=True)
 
      address = fields.Char('Address IP')
      actif = fields.Boolean(string="Actif by default", default=True)
@@ -15,8 +16,9 @@ class KzmInstanceRequest(models.Model):
      ram = fields.Char(string='RAM')
      disk = fields.Char(string='DISK')
      url = fields.Char(string='URL')
-     state = fields.Selection([('brouillon','Draft'),('soumise','Submitted'),('en traitment','Processing'),('traite','Treaty')],default='brouillon')
-     limit_date = fields.Date(string='Processing deadline')
+     state = fields.Selection([('brouillon','Draft'),('soumise','Submitted'),
+     ('en traitment','Processing'),('traite','Treaty')],default='brouillon' , tracking=True)
+     limit_date = fields.Date(string='Processing deadline' , tracking=True)
      treat_date = fields.Datetime(string='Processing date')
      treat_duration = fields.Float(string='Processing time')
 
@@ -39,7 +41,11 @@ class KzmInstanceRequest(models.Model):
      def action_scheduled_day(self):
          day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
          for x in day:
-             x.state = 'soumise'
+             x.action_submitted()
+
+
+
+
 
 """ def action_scheduled_day5(self):
           limit_date = self.env['kzm.instance.request'].search([])

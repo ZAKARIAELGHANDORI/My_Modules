@@ -59,17 +59,17 @@
 
                 </tree>
 
-           <!--
-                <button name="action_draft" string="DRAFT" type="object"
-                        attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}"/>
-                <button name="action_submitted" id="action_confirm" string="SUBMITTED" type="object"
-                        attrs="{'invisible':[('state','!=','brouillon')]}"/>
-                <button name="action_processing" string="PROCESSING" type="object"
-                        groups="kzm_instance_request.manager_group" attrs="{'invisible':[('state','!=','soumise')]}"/>
-                <button name="action_treaty" type="object" string="TREATY" groups="kzm_instance_request.manager_group"
-                        attrs="{'invisible':[('state','!=','en traitment')]}"/>
+                <!--
+                     <button name="action_draft" string="DRAFT" type="object"
+                             attrs="{'invisible':['|',('state','=','brouillon'),('state','=','en traitment')]}"/>
+                     <button name="action_submitted" id="action_confirm" string="SUBMITTED" type="object"
+                             attrs="{'invisible':[('state','!=','brouillon')]}"/>
+                     <button name="action_processing" string="PROCESSING" type="object"
+                             groups="kzm_instance_request.manager_group" attrs="{'invisible':[('state','!=','soumise')]}"/>
+                     <button name="action_treaty" type="object" string="TREATY" groups="kzm_instance_request.manager_group"
+                             attrs="{'invisible':[('state','!=','en traitment')]}"/>
 
-            -->
+                 -->
             </field>
 
         </record>
@@ -129,6 +129,11 @@
 
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -160,7 +165,7 @@
             </field>
         </record>
 
-        <!-- ok-->
+        <!-- ACTION_WINDOW-->
 
 
         <record id="kzm_instance_request_action_window" model="ir.actions.act_window">
@@ -209,7 +214,6 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">kzm.instance.request</field>
             <field name="view_mode">tree,form</field>
-
 
 
             <field name="search_view_id" ref="kzm_instance_view_search_demandes2"/>
