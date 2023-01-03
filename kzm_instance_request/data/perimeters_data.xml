@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="perimeters_1" model="perimeters">
+            <field name="name">Achats</field>
+        </record>
+
+        <record id="perimeters_2" model="perimeters">
+            <field name="name">Ventes</field>
+        </record>
+
+        <record id="perimeters_3" model="perimeters">
+            <field name="name">Documents</field>
+        </record>
+
+        <record id="perimeters_4" model="perimeters">
+            <field name="name">Projets</field>
+        </record>
+
+        <record id="perimeters_5" model="perimeters">
+            <field name="name">Agriculture</field>
+        </record>
+
+
+    </data>
+</odoo>
