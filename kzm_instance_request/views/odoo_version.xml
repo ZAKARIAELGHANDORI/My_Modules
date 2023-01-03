@@ -58,10 +58,6 @@
           <field name="view_mode">tree,form</field>
       </record>
 
-<!--
-    <menuitem id="session_model_menu_action" parent="instances.menu_odoo_version"
-              name="Odoo Version"/>
--->
 
   </data>
 </odoo>

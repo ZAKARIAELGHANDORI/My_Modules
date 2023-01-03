@@ -25,6 +25,11 @@ class KzmInstanceRequest(models.Model):
     treat_date = fields.Datetime(string='Processing date')
     treat_duration = fields.Float(string='Processing time')
 
+    #pour ne pas avoir deux address IP identiques
+    _sql_constraints = [
+        ("address_unique", "unique(address)", "The address IP Already Exists")
+    ]
+
     def action_draft(self):
         for x in self:
             x.state = "brouillon"
@@ -58,8 +63,9 @@ class KzmInstanceRequest(models.Model):
     ## override the unlink methode
     def unlink(self):
         for state in self:
-            if state.name != "brouillon":
-                raise exceptions.UserError(_("Cannot delete an instance which is in a state different to draft"))
+            if state.state != "brouillon":
+                raise exceptions.ValidationError(_("Cannot delete an instance which is in a state different to draft"))
+            print('success')
         return super().unlink()
 
     ## override the update methode
@@ -67,13 +73,21 @@ class KzmInstanceRequest(models.Model):
         if vals.get('limit_date'):
             users = self.env.ref('kzm_instance_request.manager_group').users
             for user in users:
-                self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id, note=f' please approve the {self.ref_name} instance')
+                self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id, note=f' please submit the {self.ref_name} instance avant {self.limit_date}')
             t2 = vals['limit_date']
             t2 = datetime.strptime(str(t2), '%Y-%m-%d')
             #print("----->", datetime.now(), "----->", t2)
             if t2 < datetime.now():
                 raise exceptions.UserError(_("You cannot set a deadline later than today"))
         return super(KzmInstanceRequest, self).write(vals)
+
+    #@api.onchange('state')
+    #def print_msg(self):
+     #   print(f'Done the two actions are triggered (actions : print_msg , action_{self.state})')
+    #lorsque l'etat est changer à cause d'un clic sur un button (treat , draft.. : ça veut dire on change le state) la fonction print_msg se declenche pas
+    #on doit changer directement le champ pour que la fonction se declenche
+
+
 
 
 """ def action_scheduled_day5(self):

@@ -229,7 +229,7 @@
 
 
         <menuitem id="test_menu_root" name="Instance "
-                  groups="kzm_instance_request.user_group"  web_icon="kzm_instance_request,static/description/icon.png"/>
+                  groups="kzm_instance_request.user_group" web_icon="kzm_instance_request,static/description/icon.png"/>
 
 
         <menuitem id="session_model_menu_action" action="kzm_instance_request_action_window"
@@ -254,6 +254,8 @@
                   name="Analyse" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
         <menuitem id="Configuration_menu" action="kzm_instance_request_action_window"
                   name="Configuration" parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
+        <menuitem id="Perimeters_menu" action="perimeters_action_window"
+                  name="Perimeters" parent="Configuration_menu" groups="kzm_instance_request.admin_group"/>
 
 
     </data>

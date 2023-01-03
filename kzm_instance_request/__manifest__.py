@@ -28,7 +28,9 @@
         'data/activity.xml',
         'data/instancedata.xml',
         'data/odoo_version.xml',
+        'data/perimeters_data.xml',
         'data/sequence_instance.xml',
+        'views/perimeters.xml',
         'views/odoo_version.xml',
         'views/instances.xml',
 
