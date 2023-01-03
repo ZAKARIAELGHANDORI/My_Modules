@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <!-- Sequence for instance creation-->
+    <record id="seq_instance_request" model="ir.sequence">
+        <field name="name">Name</field>
+        <field name="code">kzm.instance.request</field>
+        <field name="prefix">INST</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+
+    </record>
+  </data>
+</odoo>

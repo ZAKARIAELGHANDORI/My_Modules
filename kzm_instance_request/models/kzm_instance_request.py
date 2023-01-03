@@ -1,50 +1,79 @@
 # -*- coding: utf-8 -*-
-from datetime import date, timedelta , datetime
-from odoo import models, fields, api
+from datetime import date, timedelta, datetime
+from odoo import models, exceptions, fields, api, _
 
 
 class KzmInstanceRequest(models.Model):
-     _name = 'kzm.instance.request'
-     _inherit = ['mail.activity.mixin','mail.thread']
-     _description = "demande d'instance"
+    _name = 'kzm.instance.request'
+    _inherit = ['mail.activity.mixin', 'mail.thread']
+    _description = "demande d'instance"
 
-     name = fields.Char(string='Designation' , tracking=True)
+    name = fields.Char(string='Designation', tracking=True)
 
-     address = fields.Char('Address IP')
-     actif = fields.Boolean(string="Actif by default", default=True)
-     cpu = fields.Char(string='CPU')
-     ram = fields.Char(string='RAM')
-     disk = fields.Char(string='DISK')
-     url = fields.Char(string='URL')
-     state = fields.Selection([('brouillon','Draft'),('soumise','Submitted'),
-     ('en traitment','Processing'),('traite','Treaty')],default='brouillon' , tracking=True)
-     limit_date = fields.Date(string='Processing deadline' , tracking=True)
-     treat_date = fields.Datetime(string='Processing date')
-     treat_duration = fields.Float(string='Processing time')
+    ref_name = fields.Char(string="Reference Name", required=True, copy=False, readonly=True,
+                           default="New")
 
-     def action_draft(self):
-         for x in self:
-            x.state="brouillon"
+    address = fields.Char('Address IP')
+    actif = fields.Boolean(string="Actif by default", default=True)
+    cpu = fields.Char(string='CPU')
+    ram = fields.Char(string='RAM')
+    disk = fields.Char(string='DISK')
+    url = fields.Char(string='URL')
+    state = fields.Selection([('brouillon', 'Draft'), ('soumise', 'Submitted'),
+                              ('en traitment', 'Processing'), ('traite', 'Treaty')], default='brouillon', tracking=True)
+    limit_date = fields.Date(string='Processing deadline', tracking=True)
+    treat_date = fields.Datetime(string='Processing date')
+    treat_duration = fields.Float(string='Processing time')
 
-     def action_submitted(self):
-         for x in self:
-            x.state ="soumise"
-     def action_processing(self):
-         for x in self:
-            x.state="en traitment"
+    def action_draft(self):
+        for x in self:
+            x.state = "brouillon"
 
-     def action_treaty(self):
-         for x in self:
-            x.state="traite"
+    def action_submitted(self):
+        for x in self:
+            x.state = "soumise"
 
+    def action_processing(self):
+        for x in self:
+            x.state = "en traitment"
 
-     def action_scheduled_day(self):
-         day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
-         for x in day:
-             x.action_submitted()
+    def action_treaty(self):
+        for x in self:
+            x.state = "traite"
+            x.treat_date = datetime.now()
 
+    def action_scheduled_day(self):
+        day = self.env['kzm.instance.request'].search([('limit_date', '<=', date.today() + timedelta(days=5))])
+        for x in day:
+            x.action_submitted()
 
+    ## override the creation methode
+    @api.model
+    def create(self, vals):
+        if vals.get('ref_name', 'New') == 'New':
+            vals['ref_name'] = self.env['ir.sequence'].next_by_code('kzm.instance.request') or 'New'
+        res = super(KzmInstanceRequest, self).create(vals)
+        return res
 
+    ## override the unlink methode
+    def unlink(self):
+        for state in self:
+            if state.name != "brouillon":
+                raise exceptions.UserError(_("Cannot delete an instance which is in a state different to draft"))
+        return super().unlink()
+
+    ## override the update methode
+    def write(self, vals):
+        if vals.get('limit_date'):
+            users = self.env.ref('kzm_instance_request.manager_group').users
+            for user in users:
+                self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id, note=f' please approve the {self.ref_name} instance')
+            t2 = vals['limit_date']
+            t2 = datetime.strptime(str(t2), '%Y-%m-%d')
+            #print("----->", datetime.now(), "----->", t2)
+            if t2 < datetime.now():
+                raise exceptions.UserError(_("You cannot set a deadline later than today"))
+        return super(KzmInstanceRequest, self).write(vals)
 
 
 """ def action_scheduled_day5(self):
@@ -68,13 +97,3 @@ class KzmInstanceRequest(models.Model):
                 # self.env['kzm.instance.request'].invalidate_model(['state'])
 
                 #print("action scheduled done") """
-
-
-
-
-
-
-
-
-
-
