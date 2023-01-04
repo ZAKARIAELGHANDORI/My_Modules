@@ -42,14 +42,15 @@ class KzmInstanceRequest(models.Model):
         self.num_peri = len(self.perimeters_ids)
 
     # compute le champ treat_date
-
+    @api.depends('treat_date')
     def comp_duration(self):
-        for x in self:
-            now = datetime.now()
-            delta = abs((x.treat_date - now).days)
-            self.treat_duration = delta
+        if self.treat_date:
+            for x in self:
+                now = datetime.now()
+                delta = abs((x.treat_date - now)).total_seconds()
+                x.treat_duration = delta / 86400
 
-        # pour ne pas avoir deux address IP identiques
+            # pour ne pas avoir deux address IP identiques
 
     _sql_constraints = [
         ("address_unique", "unique(address)", "The address IP Already Exists")
