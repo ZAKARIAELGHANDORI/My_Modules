@@ -132,6 +132,8 @@
                                 <!-- <field name = "state" attrs="{'readonly':[('state', '=', 'traite')]}" /> -->
                                 <field name="partner_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="tl_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="address_employee"/>
                                 <field name="tl_user_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="odoo_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="perimeters_ids" attrs="{'readonly':[('state', '=', 'traite')]}"

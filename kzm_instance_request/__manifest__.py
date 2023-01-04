@@ -19,7 +19,7 @@
     'version': '16.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail', 'contacts', 'sale_management'],
+    'depends': ['base', 'mail', 'contacts', 'sale_management', 'hr'],
 
     # always loaded
     'data': [

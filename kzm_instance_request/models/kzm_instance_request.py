@@ -19,25 +19,30 @@ class KzmInstanceRequest(models.Model):
     ram = fields.Char(string='RAM')
     disk = fields.Char(string='DISK')
     url = fields.Char(string='URL')
+    company_id = fields.Char(string='invisible')
+
     state = fields.Selection([('brouillon', 'Draft'), ('soumise', 'Submitted'),
                               ('en traitment', 'Processing'), ('traite', 'Treaty')], default='brouillon', tracking=True)
     limit_date = fields.Date(string='Processing deadline', tracking=True)
     treat_date = fields.Datetime(string='Processing date')
-    treat_duration = fields.Float(string='Processing time', compute="comp_duration")
+    treat_duration = fields.Float(string='Processing time', compute="comp_duration", store=True)
 
-    partner_id = fields.Many2one(comodel_name='res.partner', string="Partner", )
-    tl_id = fields.Many2one(comodel_name='res.partner', string="Employees")
-    tl_user_id = fields.Many2one(comodel_name='res.partner', string="Employee")
+    partner_id = fields.Many2one(comodel_name='res.partner', string="Partner")
+    tl_id = fields.Many2one(comodel_name='hr.employee', string="Employees")
+    tl_user_id = fields.Many2one(comodel_name='hr.employee', string="Employee")
     odoo_id = fields.Many2one(comodel_name='odoo.version', string="Odoo version")
     perimeters_ids = fields.Many2many(comodel_name='perimeters', string="Perimeters")
+    address_employee = fields.Many2one(related='tl_id.address_id', string="Employee address", readonly=False)
 
-    num_peri = fields.Integer(string='Number of Perimeters', compute='comp_perimeters')
+    num_peri = fields.Integer(string='Number of Perimeters', compute='comp_perimeters', store=True)
 
     # compter le nombre de perimeters choisi
+    @api.depends('perimeters_ids')
     def comp_perimeters(self):
         self.num_peri = len(self.perimeters_ids)
 
     # compute le champ treat_date
+
     def comp_duration(self):
         for x in self:
             now = datetime.now()
