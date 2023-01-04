@@ -188,11 +188,47 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click p-0" style="background-color: #85E1FF">
-                                <div class="col-3 p-2 text-center align-self-center">
+                                <div style="margin:16px">
+                                    <strong style="color : black">REFERENCE</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="ref_name"/>
+                                        </span>
+                                    </li>
+
                                     <strong style="color : black">DESIGNATION</strong>
                                     <li style="margin-left: 1cm">
                                         <span style="color:red">
                                             <field name="name"/>
+                                        </span>
+                                    </li>
+
+
+                                    <strong style="color : black">Odoo Version</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="odoo_id"/>
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">Perimeters</strong>
+                                    <l style="margin-left: 1cm ; decoration:none">
+                                        <span style="color:red">
+                                            <field name="perimeters_ids"/>
+                                        </span>
+                                    </l>
+
+                                    <strong style="color : black">PROCESSING DEADLINE</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="limit_date"/>
+                                        </span>
+                                    </li>
+
+                                    <strong style="color : black">STATE</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="state"/>
                                         </span>
                                     </li>
                                 </div>
