@@ -46,6 +46,11 @@
                     <field name="name"/>
                     <field name="address"/>
                     <field name="cpu"/>
+                    <field name="partner_id"/>
+                    <field name="tl_id"/>
+                    <field name="tl_user_id"/>
+                    <field name="odoo_id"/>
+                    <field name="perimeters_ids" widget="many2many_tags"/>
                     <field name="ram"/>
                     <field name="disk"/>
                     <field name="url"/>
@@ -125,6 +130,13 @@
                             <group>
                                 <field name="name" required="true" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <!-- <field name = "state" attrs="{'readonly':[('state', '=', 'traite')]}" /> -->
+                                <field name="partner_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="tl_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="tl_user_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="odoo_id" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="perimeters_ids" attrs="{'readonly':[('state', '=', 'traite')]}"
+                                       widget="many2many_tags"/>
+
 
                             </group>
 
@@ -134,20 +146,32 @@
                                 <field name="treat_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                                 <field name="treat_duration" attrs="{'readonly':[('state', '=', 'traite')]}"/>
                             </group>
+                            <group>
+                                <field name="num_peri"/>
+                            </group>
 
                         </group>
+                        <!-- <group>
+                             <notebook>
+                                 <page>
+                                     <field name="perimeters_ids"/>
+                                 </page>
+                             </notebook>
+                         </group> -->
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="activity_ids" widget="mail_activity"/>
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
+
+
                 </form>
             </field>
         </record>
 
         <record id="kzm_instance_view_search" model="ir.ui.view">
-            <field name="name">Search by Designation , address , state</field>
+            <field name="name">Search by Designation , address , state and by relationnel fields</field>
             <field name="model">kzm.instance.request</field>
             <field name="arch" type="xml">
 
@@ -155,6 +179,11 @@
                     <field name="name"/>
                     <field name="address"/>
                     <field name="state"/>
+                    <field name="partner_id"/>
+                    <field name="tl_id"/>
+                    <field name="tl_user_id"/>
+                    <field name="odoo_id"/>
+                    <field name="perimeters_ids" widget="many2many_tags"/>
                 </search>
 
             </field>
