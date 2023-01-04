@@ -26,7 +26,6 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/activity.xml',
-        'data/instancedata.xml',
         'data/odoo_version.xml',
         'data/perimeters_data.xml',
         'data/sequence_instance.xml',

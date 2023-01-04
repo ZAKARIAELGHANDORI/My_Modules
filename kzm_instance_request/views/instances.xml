@@ -153,13 +153,6 @@
                             </group>
 
                         </group>
-                        <!-- <group>
-                             <notebook>
-                                 <page>
-                                     <field name="perimeters_ids"/>
-                                 </page>
-                             </notebook>
-                         </group> -->
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
@@ -169,6 +162,84 @@
 
 
                 </form>
+            </field>
+        </record>
+
+        <record id="instance_request_view_kanban" model="ir.ui.view">
+            <field name="name">kzm.instance.request.view.kanban</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+                <kanban create="false" group_create="false" sample="1">
+                    <field name="ref_name"/>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="cpu"/>
+                    <field name="partner_id"/>
+                    <field name="tl_id"/>
+                    <field name="tl_user_id"/>
+                    <field name="odoo_id"/>
+                    <field name="perimeters_ids" widget="many2many_tags"/>
+                    <field name="ram"/>
+                    <field name="disk"/>
+                    <field name="url"/>
+                    <field name="limit_date"/>
+                    <field name="treat_date"/>
+                    <field name="treat_duration"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click p-0" style="background-color: #85E1FF">
+                                <div class="col-3 p-2 text-center align-self-center">
+                                    <strong style="color : black">DESIGNATION</strong>
+                                    <li style="margin-left: 1cm">
+                                        <span style="color:red">
+                                            <field name="name"/>
+                                        </span>
+                                    </li>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record id="instance_request_view_gantt" model="ir.ui.view">
+            <field name="name">kzm.instance.request.view.gantt</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt"
+                       date_start="create_date"
+                       date_stop="limit_date">
+
+                </gantt>
+
+
+            </field>
+        </record>
+
+
+        <record id="kzm_instance_request_job_pivot" model="ir.ui.view">
+            <field name="name">kzm.instance.request.pivot</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+                <pivot string="Jobs">
+                    <field name="ref_name" type="row"/>
+                    <field name="treat_duration" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+
+        <record id="instance_start_date_graph" model="ir.ui.view">
+            <field name="name">instance.start.date.graph</field>
+            <field name="model">kzm.instance.request</field>
+            <field name="arch" type="xml">
+                <graph string="Requests Analyse">
+                    <field name="ref_name" type="col"/>
+                    <field name="create_date" type="row" interval="day"/>
+                    <!-- <field name="treat_duration" type="measure"/> -->
+                </graph>
             </field>
         </record>
 
@@ -186,6 +257,31 @@
                     <field name="tl_user_id"/>
                     <field name="odoo_id"/>
                     <field name="perimeters_ids" widget="many2many_tags"/>
+                    <filter name="filter_current_user" string="My Requests" domain="[('create_uid','=',uid)]"/>
+                    <separator/>
+                    <filter name="state_draft" string="DRAFT" domain="[('state','=','brouillon')]"/>
+                    <filter name="state_submit" string="SUBMITTED" domain="[('state','=','soumise')]"/>
+                    <filter name="state_precessing" string="PROCESSING" domain="[('state','=','en traitment')]"/>
+                    <filter name="state_treaty" string="TREATY" domain="[('state','=','traite')]"/>
+                    <group expand="0" string="Group By">
+                        <filter
+                                name="Status"
+                                string="STATE"
+                                context="{'group_by': 'state'}"
+                        />
+
+                        <filter
+                                name="tl"
+                                string="TL"
+                                context="{'group_by': 'tl_id'}"
+                        />
+
+                        <filter
+                                name="Odoo versions"
+                                string="Odoo Versions"
+                                context="{'group_by': 'odoo_id'}"
+                        />
+                    </group>
                 </search>
 
             </field>
@@ -199,6 +295,8 @@
                 <search>
                     <field name="cpu"/>
                     <field name="ram"/>
+                    <filter name="filter_current_user" string="Mes demandes" domain="[('create_uid','=',uid)]"/>
+
                 </search>
 
             </field>
@@ -211,7 +309,7 @@
             <field name="name">Demande Instance</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">kzm.instance.request</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,kanban,gantt,pivot</field>
             <field name="domain">[('create_uid','=',uid)]</field>
 
             <field name="help" type="html">
@@ -246,6 +344,8 @@
                     Create your first instance
                 </p>
             </field>
+            <field name="search_view_id" ref="kzm_instance_view_search_demandes2"/>
+
         </record>
 
         <record id="action_mes_demandes2" model="ir.actions.act_window">
@@ -258,6 +358,12 @@
             <field name="search_view_id" ref="kzm_instance_view_search_demandes2"/>
         </record>
 
+        <record id="action_analyse_graph" model="ir.actions.act_window">
+            <field name="name">Graph Analyse</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kzm.instance.request</field>
+            <field name="view_mode">graph</field>
+        </record>
 
         <menuitem id="test_menu_root" name="Instance "
                   groups="kzm_instance_request.user_group" web_icon="kzm_instance_request,static/description/icon.png"/>
@@ -281,7 +387,7 @@
         <menuitem id="menu_all" name="All"
                   action="tout_action_window" parent="Responsable_menu" groups="kzm_instance_request.manager_group"/>
 
-        <menuitem id="Analyse_menu" action="kzm_instance_request_action_window"
+        <menuitem id="Analyse_menu" action="action_analyse_graph"
                   name="Analyse" parent="test_menu_root" groups="kzm_instance_request.user_group"/>
         <menuitem id="Configuration_menu" action="kzm_instance_request_action_window"
                   name="Configuration" parent="test_menu_root" groups="kzm_instance_request.admin_group"/>
