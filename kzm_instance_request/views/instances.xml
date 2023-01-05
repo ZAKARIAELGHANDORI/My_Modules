@@ -272,8 +272,7 @@
             <field name="model">kzm.instance.request</field>
             <field name="arch" type="xml">
                 <graph string="Requests Analyse">
-                    <field name="ref_name" type="col"/>
-                    <field name="create_date" type="row" interval="day"/>
+                    <field name="create_date" />
                     <!-- <field name="treat_duration" type="measure"/> -->
                 </graph>
             </field>

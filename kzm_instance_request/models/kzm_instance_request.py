@@ -48,10 +48,9 @@ class KzmInstanceRequest(models.Model):
             for x in self:
                 now = datetime.now()
                 delta = abs((x.treat_date - now)).total_seconds()
-                x.treat_duration = round(delta / 86400)
+                x.treat_duration = round((delta / 86400), 2)
 
-            # pour ne pas avoir deux address IP identiques
-
+    # pour ne pas avoir deux address IP identiques
     _sql_constraints = [
         ("address_unique", "unique(address)", "The address IP Already Exists")
     ]
