@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_instance" model="ir.ui.view">
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/div" position="inside">
+
+                    <button name="open_tree_view" string="List of instances" type="object" icon="fa-external-link"/>
+
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

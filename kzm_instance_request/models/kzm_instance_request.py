@@ -36,6 +36,18 @@ class KzmInstanceRequest(models.Model):
 
     num_peri = fields.Integer(string='Number of Perimeters', compute='comp_perimeters', store=True)
 
+    def late_request(self):
+        domain = [('self.limit_date', '>=', datetime.now() + timedelta(days=5))]
+        return {
+            'name': _('late requests'),
+            'res_model': 'kzm.instance.request',
+            'view_mode': 'tree, form',
+            'domain': domain,
+            'context': {},
+            'type': 'ir.actions.act_window',
+            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
+        }
+
     # compter le nombre de perimeters choisi
     @api.depends('perimeters_ids')
     def comp_perimeters(self):

@@ -32,6 +32,9 @@
         'views/perimeters.xml',
         'views/odoo_version.xml',
         'views/instances.xml',
+        'views/employee.xml',
+        'views/odoo_version_instance.xml',
+        'views/devis_odoo_version.xml',
 
     ],
     # only loaded in demonstration mode

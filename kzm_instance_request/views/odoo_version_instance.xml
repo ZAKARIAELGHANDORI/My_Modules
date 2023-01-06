@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_version_odoo_instance" model="ir.ui.view">
+            <field name="model">odoo.version</field>
+            <field name="inherit_id" ref="kzm_instance_request.odoo_version_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet" position="inside">
+                    <notebook>
+                        <page name="results" string="Instances list of this odoo version">
+
+                            <field
+
+                                    name="instance_ids"
+
+                            />
+
+                        </page>
+
+                    </notebook>
+
+
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
