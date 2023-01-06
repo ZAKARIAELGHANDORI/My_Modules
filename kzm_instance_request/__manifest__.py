@@ -35,6 +35,7 @@
         'views/employee.xml',
         'views/odoo_version_instance.xml',
         'views/devis_odoo_version.xml',
+        'wizard/order_instance_wizard.xml',
 
     ],
     # only loaded in demonstration mode

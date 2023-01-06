@@ -5,6 +5,7 @@ access_kzm_instance_request_manager,kzm_instance_request_manager,model_kzm_insta
 access_kzm_instance_request_admin,kzm_instance_request_admin,model_kzm_instance_request,kzm_instance_request.admin_group,1,1,1,1
 access_odoo_version_admin,odoo_version_admin,model_odoo_version,kzm_instance_request.admin_group,1,1,1,1
 access_perimeters_admin,perimeters_admin,model_perimeters,kzm_instance_request.admin_group,1,1,1,1
+access_create_instance_wizard_admin,create_instance_admin,model_create_instance,kzm_instance_request.admin_group,1,1,1,1
 
 
 

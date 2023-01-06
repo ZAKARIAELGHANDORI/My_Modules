@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="odoo_version"/>
+                    <field name="version_odoo_id"/>
                 </xpath>
             </field>
         </record>
@@ -16,7 +16,7 @@
             <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="odoo_version"/>
+                    <field name="version_odoo_id"/>
                 </xpath>
             </field>
         </record>
@@ -31,7 +31,7 @@
                         <filter
                                 name="Odoo versions"
                                 string="Odoo Versions"
-                                context="{'group_by': 'odoo_version'}"
+                                context="{'group_by': 'version_odoo_id'}"
                         />
                     </group>
                 </xpath>
@@ -39,47 +39,6 @@
         </record>
 
 
-     <!--   <record id="list_sale_order" model="ir.ui.view">
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_tree"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='message_needaction']" position="after">
-
-                        <button name="%(action_create_instance_order)d" string="Create Instances" type="action"/>
-
-
-
-                </xpath>
-            </field>
-        </record> -->
-
-        <record model="ir.ui.view" id="create_instance_order_form_view">
-            <field name="name">Create instance form</field>
-            <field name="model">kzm.instance.request</field>
-            <field name="arch" type="xml">
-                <form>
-                    <group>
-                        <group>
-                            <field name="cpu"/>
-                            <field name="ram"/>
-                            <field name="disk"/>
-                        </group>
-                        <group>
-                            <field name="tl_id"/>
-                        </group>
-
-                    </group>
-                </form>
-            </field>
-        </record>
-
-
-        <record id="action_create_order_instance" model="ir.actions.act_window">
-            <field name="name">Create Instance</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_mode">form</field>
-        </record>
 
 
     </data>

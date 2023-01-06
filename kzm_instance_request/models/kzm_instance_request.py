@@ -33,20 +33,8 @@ class KzmInstanceRequest(models.Model):
     odoo_id = fields.Many2one(comodel_name='odoo.version', string="Odoo version")
     perimeters_ids = fields.Many2many(comodel_name='perimeters', string="Perimeters")
     address_employee = fields.Many2one(related='tl_id.address_id', string="Employee address", readonly=False)
-
     num_peri = fields.Integer(string='Number of Perimeters', compute='comp_perimeters', store=True)
-
-    def late_request(self):
-        domain = [('self.limit_date', '>=', datetime.now() + timedelta(days=5))]
-        return {
-            'name': _('late requests'),
-            'res_model': 'kzm.instance.request',
-            'view_mode': 'tree, form',
-            'domain': domain,
-            'context': {},
-            'type': 'ir.actions.act_window',
-            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
-        }
+    purchase_orders = fields.Many2many(comodel_name='sale.order', string="Purchase Order", invisible=True)
 
     # compter le nombre de perimeters choisi
     @api.depends('perimeters_ids')
@@ -55,12 +43,12 @@ class KzmInstanceRequest(models.Model):
 
     # compute le champ treat_date
     @api.depends('treat_date')
-    def comp_duration(self):
-        if self.treat_date:
-            for x in self:
-                now = datetime.now()
-                delta = abs((x.treat_date - now)).total_seconds()
-                x.treat_duration = round((delta / 86400), 2)
+    def _compute_treat_duration(self):
+        for rec in self:
+            if rec.treat_date:
+                treat = rec.treat_date.date()
+                today = date.today()
+                rec.treat_duration = (treat - today).days
 
     # pour ne pas avoir deux address IP identiques
     _sql_constraints = [
@@ -117,6 +105,7 @@ class KzmInstanceRequest(models.Model):
             # print("----->", datetime.now(), "----->", t2)
             if t2 < datetime.now():
                 raise exceptions.UserError(_("You cannot set a deadline later than today"))
+
         return super(KzmInstanceRequest, self).write(vals)
 
     # @api.onchange('state')

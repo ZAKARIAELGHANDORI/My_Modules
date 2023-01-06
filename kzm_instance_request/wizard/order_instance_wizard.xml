@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="create_instance_order_form_view">
+            <field name="name">Create instance form</field>
+            <field name="model">create.instance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <footer>
+                       <button name="create_instance" string="Create and Save" class="btn-primary" type="object"/>
+
+                        <button special="cancel" class="btn-secondary" string="DISCARD"/>
+                    </footer>
+
+                    <group>
+                        <field name="cpu"/>
+                        <field name="ram"/>
+                        <field name="disk"/>
+                        <field name="name"/>
+                        <field name="tl"/>
+                        <field name="limit_date"/>
+                    </group>
+                    <group>
+                        <field name="purchase_orders"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_create_order_instance" model="ir.actions.act_window">
+            <field name="name">Create Instance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.instance</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+
+
+        </record>
+
+        <record id="list_sale_order" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position="inside">
+                    <header>
+                        <button name="%(action_create_order_instance)d" string="Create Instances"
+                                type="action"/>
+                    </header>
+
+
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
