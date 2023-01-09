@@ -17,7 +17,7 @@ class CreateInstanceOrder(models.Model):
     purchase_orders = fields.Many2many(comodel_name='sale.order', string="Purchase Order", default=default_purchase)
 
     def create_instance(self):
-        #domain = [('tl_id', '=', self.tl)]
+        domain = [('tl_id', '=', self.tl.id)]
         if self.cpu == 0 or self.disk == 0 or self.ram == 0:
             raise exceptions.ValidationError(_("You cannot request instances with zero performance"))
         for x in range(len(self.purchase_orders)):
@@ -26,7 +26,8 @@ class CreateInstanceOrder(models.Model):
                 'cpu': self.cpu,
                 'disk': self.disk,
                 'limit_date': self.limit_date,
-                'tl_id': self.tl.id
+                'tl_id': self.tl.id,
+                'purchase_orders': self.purchase_orders
             })
 
         return {
@@ -34,7 +35,7 @@ class CreateInstanceOrder(models.Model):
             'res_model': 'kzm.instance.request',
             'view_mode': 'tree, form',
             'context': {},
-
+            'domain': domain,
             'type': 'ir.actions.act_window',
             'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
         }
