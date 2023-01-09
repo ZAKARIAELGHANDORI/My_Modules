@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <odoo>
+        <template id="kzm_instance_report">
+            <t t-call="web.external_layout">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div name="Customer name" style="margin-left:15.5cm">
+                                <strong>Customer :</strong>
+                                <p class="m-0" t-field="doc.partner_id"/>
+                            </div>
+                            <br></br>
+                            <div name="Request Number">
+                                <strong>Request Number :</strong>
+                                <p class="m-0" t-field="doc.name"/>
+                            </div>
+                            <div class="row mt-4 mb-4" id="informations">
+
+                                <div class="col-auto col-3 mw-100 mb-2"
+                                     name="odoo version">
+                                    <strong>Odoo Version :</strong>
+                                    <p class="m-0" t-field="doc.odoo_id"/>
+                                </div>
+
+                                <div class="col-auto col-3 mw-100 mb-2"
+                                     name="tl name">
+                                    <strong>TL :</strong>
+                                    <p class="m-0" t-field="doc.tl_id"/>
+                                </div>
+
+                                <div class="col-auto col-3 mw-100 mb-2"
+                                     name="tl name">
+                                    <strong>Date Limit :</strong>
+                                    <p class="m-0" t-field="doc.limit_date"/>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <table class="table table-sm o_main_table mt-4">
+                            <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_cpu" class="text-start">CPU</th>
+                                    <th name="th_ram" class="text-end">RAM</th>
+                                    <th name="th_disk" class="text-end">DISK</th>
+                                    <th name="th_url" class="text-end">URL</th>
+                                    <th name="th_ip" class="text-end">IP</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="docs" t-as="doc">
+                                    <td name="td_cpu">
+                                        <span t-field="doc.cpu"/>
+                                    </td>
+
+                                    <td name="td_ram" class="text-end">
+                                        <span t-field="doc.ram"/>
+                                    </td>
+
+                                    <td name="td_disk" class="text-end">
+                                        <span t-field="doc.disk"/>
+                                    </td>
+
+                                    <td name="td_url" class="text-end">
+                                        <span t-field="doc.url"/>
+                                    </td>
+
+                                    <td name="td_ip" class="text-end">
+                                        <span t-field="doc.address"/>
+                                    </td>
+
+                                </t>
+                            </tbody>
+                        </table>
+
+                    </t>
+                </t>
+            </t>
+
+        </template>
+
+
+    </odoo>
+
+</odoo>

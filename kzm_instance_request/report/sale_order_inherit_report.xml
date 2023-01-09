@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="sale_oder_inherit" inherit_id="sale.report_saleorder_document">
+            <!-- <xpath expr="//h2[@class='mt-4']" position="before">
+                <h2>
+                    <span>done :Order #</span>
+                    <span t-field="doc.name"/>
+                </h2>
+
+            </xpath> -->
+
+            <xpath expr="//div[@class='page']" position="before">
+                <strong style="margin-left:14cm">Customer :</strong>
+                <br></br>
+                <div t-field="doc.partner_id" style="margin-left:14cm"
+                />
+
+            </xpath>
+
+            <xpath expr="//div[@t-if='doc.user_id.name']" position="before">
+                <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Odoo Version :</strong>
+                    <p class="m-0" t-field="doc.version_odoo_id"/>
+                </div>
+
+
+            </xpath>
+
+
+        </template>
+
+
+    </data>
+</odoo>
