@@ -16,12 +16,11 @@
                         <field name="cpu"/>
                         <field name="ram"/>
                         <field name="disk"/>
-                        <field name="name"/>
                         <field name="tl"/>
                         <field name="limit_date"/>
                     </group>
                     <group>
-                        <field name="purchase_orders"/>
+                        <field name="sale_order_ids"/>
                     </group>
 
                 </form>

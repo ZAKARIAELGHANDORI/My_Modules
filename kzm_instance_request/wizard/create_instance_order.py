@@ -7,29 +7,29 @@ class CreateInstanceOrder(models.Model):
     cpu = fields.Char(string='CPU')
     ram = fields.Char(string='RAM')
     disk = fields.Char(string='DISK')
-    limit_date = fields.Date(string='Processing deadline', tracking=True)
+    limit_date = fields.Date(string='Processing deadline')
     tl = fields.Many2one(comodel_name='hr.employee', string="Employees")
-    name = fields.Char(string='Designation', tracking=True)
+    instance_id = fields.Many2one(comodel_name='kzm.instance.request', string="Instance id", invisible=True)
 
-    def default_purchase(self):
+    def default_sales(self):
         return self.env['sale.order'].browse(self._context.get('active_ids'))
 
-    purchase_orders = fields.Many2many(comodel_name='sale.order', string="Purchase Order", default=default_purchase)
+    sale_order_ids = fields.Many2many(comodel_name='sale.order', string="Sale Order", default=default_sales)
 
     def create_instance(self):
-        domain = [('tl_id', '=', self.tl.id)]
+        ids_rec = []
         if self.cpu == 0 or self.disk == 0 or self.ram == 0:
             raise exceptions.ValidationError(_("You cannot request instances with zero performance"))
-        for x in range(len(self.purchase_orders)):
-            self.env['kzm.instance.request'].create({
-                'name': self.name,
+        for x in self.sale_order_ids:
+            val = self.env['kzm.instance.request'].create({
                 'cpu': self.cpu,
                 'disk': self.disk,
                 'limit_date': self.limit_date,
                 'tl_id': self.tl.id,
-                'purchase_orders': self.purchase_orders
+                'sale_order_id': x.id
             })
-
+            ids_rec.append(val.id)
+        domain = [('id', '=', ids_rec)]
         return {
             'name': _('list of instance created'),
             'res_model': 'kzm.instance.request',
