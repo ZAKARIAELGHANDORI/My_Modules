@@ -35,6 +35,9 @@
         'views/employee.xml',
         'views/odoo_version_instance.xml',
         'views/devis_odoo_version.xml',
+        'report/sale_order_inherit_report.xml',
+        'report/kzm_instance_request_report.xml',
+        'report/instance_document.xml',
         'wizard/order_instance_wizard.xml',
 
     ],
