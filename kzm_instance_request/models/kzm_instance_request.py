@@ -46,11 +46,12 @@ class KzmInstanceRequest(models.Model):
                 treat = rec.treat_date.date()
                 today = date.today()
                 rec.treat_duration = (treat - today).days
-        #for rec in self:
-         #   if rec.treat_date:
-         #       duration = abs((datetime.now() - rec.treat_date).days)
-        #self.treat_duration = duration
-        #print(rec.treat_duration)
+        # for rec in self:
+        #   if rec.treat_date:
+        #       duration = abs((datetime.now() - rec.treat_date).days)
+        # self.treat_duration = duration
+        # print(rec.treat_duration)
+
     # pour ne pas avoir deux address IP identiques
     _sql_constraints = [
         ("address_unique", "unique(address)", "The address IP Already Exists")
@@ -78,7 +79,7 @@ class KzmInstanceRequest(models.Model):
         for x in day:
             x.action_submitted()
 
-    ## override the creation methode
+    # override the creation methode
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
@@ -86,15 +87,15 @@ class KzmInstanceRequest(models.Model):
         res = super(KzmInstanceRequest, self).create(vals)
         return res
 
-    ## override the unlink methode
+    # override the unlink methode
     def unlink(self):
         for state in self:
             if state.state != "brouillon":
                 raise exceptions.ValidationError(_("Cannot delete an instance which is in a state different to draft"))
-            print('success')
+            # print('success')
         return super().unlink()
 
-    ## override the update methode
+    # override the update methode
     def write(self, vals):
         if vals.get('limit_date'):
             users = self.env.ref('kzm_instance_request.manager_group').users
