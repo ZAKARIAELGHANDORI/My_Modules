@@ -8,10 +8,7 @@ class KzmInstanceRequest(models.Model):
     _inherit = ['mail.activity.mixin', 'mail.thread']
     _description = "demande d'instance"
 
-    name = fields.Char(string='Designation', tracking=True)
-
-    ref_name = fields.Char(string="Reference Name", required=True, copy=False, readonly=True,
-                           default="New")
+    name = fields.Char(string="Designation", required=True, copy=False, readonly=True, default="New")
 
     address = fields.Char('Address IP')
     actif = fields.Boolean(string="Actif by default", default=True)
@@ -25,7 +22,7 @@ class KzmInstanceRequest(models.Model):
                               ('en traitment', 'Processing'), ('traite', 'Treaty')], default='brouillon', tracking=True)
     limit_date = fields.Date(string='Processing deadline', tracking=True)
     treat_date = fields.Datetime(string='Processing date')
-    treat_duration = fields.Float(string='Processing time', compute="comp_duration", store=True)
+    treat_duration = fields.Float(string='Processing time', compute="_compute_treat_duration", store=True)
 
     partner_id = fields.Many2one(comodel_name='res.partner', string="Partner")
     tl_id = fields.Many2one(comodel_name='hr.employee', string="Employees")
@@ -34,7 +31,7 @@ class KzmInstanceRequest(models.Model):
     perimeters_ids = fields.Many2many(comodel_name='perimeters', string="Perimeters")
     address_employee = fields.Many2one(related='tl_id.address_id', string="Employee address", readonly=False)
     num_peri = fields.Integer(string='Number of Perimeters', compute='comp_perimeters', store=True)
-    purchase_orders = fields.Many2many(comodel_name='sale.order', string="Purchase Order", invisible=True)
+    sale_order_id = fields.Many2one(comodel_name='sale.order', string="Sale Order")
 
     # compter le nombre de perimeters choisi
     @api.depends('perimeters_ids')
@@ -49,7 +46,11 @@ class KzmInstanceRequest(models.Model):
                 treat = rec.treat_date.date()
                 today = date.today()
                 rec.treat_duration = (treat - today).days
-
+        #for rec in self:
+         #   if rec.treat_date:
+         #       duration = abs((datetime.now() - rec.treat_date).days)
+        #self.treat_duration = duration
+        #print(rec.treat_duration)
     # pour ne pas avoir deux address IP identiques
     _sql_constraints = [
         ("address_unique", "unique(address)", "The address IP Already Exists")
@@ -80,8 +81,8 @@ class KzmInstanceRequest(models.Model):
     ## override the creation methode
     @api.model
     def create(self, vals):
-        if vals.get('ref_name', 'New') == 'New':
-            vals['ref_name'] = self.env['ir.sequence'].next_by_code('kzm.instance.request') or 'New'
+        if vals.get('name', 'New') == 'New':
+            vals['name'] = self.env['ir.sequence'].next_by_code('kzm.instance.request') or 'New'
         res = super(KzmInstanceRequest, self).create(vals)
         return res
 
