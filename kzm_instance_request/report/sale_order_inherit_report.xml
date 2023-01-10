@@ -10,7 +10,7 @@
 
             </xpath> -->
 
-            <xpath expr="//div[@class='page']" position="before">
+            <xpath expr="//div[hasclass('page')]" position="before">
                 <strong style="margin-left:14cm">Customer :</strong>
                 <br></br>
                 <div t-field="doc.partner_id" style="margin-left:14cm"
