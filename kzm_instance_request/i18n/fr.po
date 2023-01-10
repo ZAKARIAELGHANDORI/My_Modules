@@ -1,0 +1,836 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* kzm_instance_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-10 11:31+0000\n"
+"PO-Revision-Date: 2023-01-10 11:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: kzm_instance_request
+#: model:mail.template,body_html:kzm_instance_request.email_template_instance_cree
+msgid ""
+"<div>\n"
+"                    <h3>Bonjour, </h3>\n"
+"                        <br/>\n"
+"                        <h3>Votre instance <t t-out=\"object.name\"/>\n"
+"                            de l’instance a bien été crée. Elle est accessible sur le lien\n"
+"                            <t t-out=\"object.address\"/> </h3>\n"
+"\n"
+"                    <br/>\n"
+"\n"
+"\n"
+"\n"
+"                    <h3>Cordialement</h3>\n"
+"\n"
+"                </div>\n"
+"\n"
+"            "
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:mail.template,body_html:kzm_instance_request.email_template_create_instance
+msgid ""
+"<h3>Bonjour, Veuillez bien créer une instance\n"
+"                        <t t-out=\"object.name\"/>\n"
+"                        avec comme performances :\n"
+"                    </h3>\n"
+"                   <br/>\n"
+"\n"
+"                    <table border=\"1px black solid\">\n"
+"                        <tr>\n"
+"                            <th>cpu</th>\n"
+"                            <th>ram</th>\n"
+"                            <th>disk</th>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td>\n"
+"                                <t t-out=\"object.cpu\"/>\n"
+"                            </td>\n"
+"                            <td>\n"
+"                                <t t-out=\"object.ram\"/>\n"
+"                            </td>\n"
+"                            <td>\n"
+"                                <t t-out=\"object.disk\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"                    </table>\n"
+"                <br/>\n"
+"\n"
+"                    <h3>Cordialement</h3>\n"
+"\n"
+"\n"
+"\n"
+"            "
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_kanban
+msgid "<strong style=\"color : black\">DESIGNATION</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_kanban
+msgid "<strong style=\"color : black\">Odoo Version</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_kanban
+msgid "<strong style=\"color : black\">PROCESSING DEADLINE</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_kanban
+msgid "<strong style=\"color : black\">Perimeters</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_kanban
+msgid "<strong style=\"color : black\">STATE</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.sale_oder_inherit
+msgid ""
+"<strong style=\"margin-left:14cm\">Customer :</strong>\n"
+"                <br/>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "<strong>Customer :</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "<strong>Date Limit :</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.sale_oder_inherit
+msgid "<strong>Odoo Version :</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "<strong>Request Number :</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "<strong>TL :</strong>"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__actif
+msgid "Actif by default"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__address
+msgid "Address IP"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,name:kzm_instance_request.admin_group
+msgid "Admin group"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,comment:kzm_instance_request.admin_group
+msgid "Admin group Permission Group."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.menu_all
+msgid "All"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.Analyse_menu
+msgid "Analyse"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__cpu
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__cpu
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "CPU"
+msgstr ""
+
+#. module: kzm_instance_request
+#. odoo-python
+#: code:addons/kzm_instance_request/models/kzm_instance_request.py:0
+#, python-format
+msgid "Cannot delete an instance which is in a state different to draft"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.Configuration_menu
+msgid "Configuration"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.action_create_order_instance
+#: model:mail.template,subject:kzm_instance_request.email_template_create_instance
+msgid "Create Instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.list_sale_order
+msgid "Create Instances"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.create_instance_order_form_view
+msgid "Create and Save"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.actions.act_window,help:kzm_instance_request.a_valider_action_window
+#: model_terms:ir.actions.act_window,help:kzm_instance_request.kzm_instance_request_action_window
+#: model_terms:ir.actions.act_window,help:kzm_instance_request.tout_action_window
+msgid "Create your first instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__create_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__create_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__create_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__create_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__create_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__create_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.create_instance_order_form_view
+msgid "DISCARD"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__disk
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__disk
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "DISK"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.form_view
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "DRAFT"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.a_valider_action_window
+#: model:ir.actions.act_window,name:kzm_instance_request.kzm_instance_request_action_window
+#: model:ir.actions.act_window,name:kzm_instance_request.tout_action_window
+msgid "Demande Instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__name
+msgid "Designation"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__display_name
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__display_name
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__display_name
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields.selection,name:kzm_instance_request.selection__kzm_instance_request__state__brouillon
+msgid "Draft"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_hr_employee
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__tl_user_id
+msgid "Employee"
+msgstr "Employé"
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__address_employee
+msgid "Employee address"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__tl
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__tl_id
+msgid "Employees"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.action_analyse_graph
+msgid "Graph Analyse"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.search_devis_version_odoo
+msgid "Group By"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__id
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__id
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__id
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__id
+msgid "ID"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "IP"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__message_has_error
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.test_menu_root
+msgid "Instance "
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:mail.template,subject:kzm_instance_request.email_template_instance_cree
+msgid "Instance Created"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.report,name:kzm_instance_request.report_for_instance_request
+msgid "Instance Document"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_hr_employee__instance_ids
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__instance_ids
+msgid "Instance ID"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.module.category,name:kzm_instance_request.kzm_instance_request_categorie
+msgid "Instance Management"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:mail.template,name:kzm_instance_request.email_template_instance_cree
+msgid "Instance created"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__instance_id
+msgid "Instance id"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_version_odoo_instance
+msgid "Instances list of this odoo version"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_request_job_pivot
+msgid "Jobs"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_odoo_version
+msgid "La version de odoo"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance____last_update
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request____last_update
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version____last_update
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__write_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__write_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__write_uid
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__write_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__write_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__write_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.demandes_en_retard1
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search_demandes_en_retard
+msgid "Late Requests"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.view_employee_instance
+msgid "List of instances"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.Responsable_menu
+msgid "Manager"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,name:kzm_instance_request.manager_group
+msgid "Manager group"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,comment:kzm_instance_request.manager_group
+msgid "Manager group Permission Group."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search_demandes2
+msgid "Mes demandes"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.action_mes_demandes2
+msgid "My Request 2"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.session_model_menu_action
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "My Requests"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.session_model_menu_action_2
+msgid "My Requests 2"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_perimeters__name
+msgid "Name"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__num_peri
+msgid "Number of Perimeters"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_hr_employee__num_instance
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__num_instance
+msgid "Number of instances"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.odoo_version_action_window
+#: model:ir.model.fields,field_description:kzm_instance_request.field_sale_order__version_odoo_id
+#: model:ir.ui.menu,name:kzm_instance_request.menu_odoo_version
+msgid "Odoo Version"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.search_devis_version_odoo
+msgid "Odoo Versions"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__odoo_id
+msgid "Odoo version"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.form_view
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "PROCESSING"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.act_window,name:kzm_instance_request.perimeters_action_window
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__perimeters_ids
+#: model:ir.ui.menu,name:kzm_instance_request.Perimeters_menu
+msgid "Perimeters"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields.selection,name:kzm_instance_request.selection__kzm_instance_request__state__en_traitment
+msgid "Processing"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__treat_date
+msgid "Processing date"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__limit_date
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__limit_date
+msgid "Processing deadline"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__treat_duration
+msgid "Processing time"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__ram
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__ram
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "RAM"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__tl_user_id
+msgid "Related user name for the resource to manage its access."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:mail.template,name:kzm_instance_request.email_template_create_instance
+msgid "Request for create an instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:mail.activity.type,name:kzm_instance_request.activity_mail_a_traite
+msgid "Request to submit"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_start_date_graph
+msgid "Requests Analyse"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "STATE"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.form_view
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "SUBMITTED"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_create_instance__sale_order_ids
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__sale_order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.instance_request_view_gantt
+msgid "Session Gantt"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__state
+msgid "State"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields.selection,name:kzm_instance_request.selection__kzm_instance_request__state__soumise
+msgid "Submitted"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "TL"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.form_view
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_view_search
+msgid "TREATY"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.constraint,message:kzm_instance_request.constraint_kzm_instance_request_address_unique
+msgid "The address IP Already Exists"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.module.category,description:kzm_instance_request.kzm_instance_request_categorie
+msgid "The instance management Applilcation"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.menu_a_valider
+msgid "To be validated"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.server,name:kzm_instance_request.pass_all_to_treaty
+msgid "To treaty state"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.actions.server,name:kzm_instance_request.pass_all_to_treaty_after_5_days_ir_actions_server
+#: model:ir.cron,cron_name:kzm_instance_request.pass_all_to_treaty_after_5_days
+msgid "To treaty state after 5 days"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields.selection,name:kzm_instance_request.selection__kzm_instance_request__state__traite
+msgid "Treaty"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__url
+#: model_terms:ir.ui.view,arch_db:kzm_instance_request.kzm_instance_report
+msgid "URL"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,name:kzm_instance_request.user_group
+msgid "Users group"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:res.groups,comment:kzm_instance_request.user_group
+msgid "Users group Permission Group."
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_odoo_version__name
+msgid "Version"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,help:kzm_instance_request.field_kzm_instance_request__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: kzm_instance_request
+#. odoo-python
+#: code:addons/kzm_instance_request/wizard/create_instance_order.py:0
+#, python-format
+msgid "You cannot request instances with zero performance"
+msgstr ""
+
+#. module: kzm_instance_request
+#. odoo-python
+#: code:addons/kzm_instance_request/models/kzm_instance_request.py:0
+#, python-format
+msgid "You cannot set a deadline later than today"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_create_instance
+msgid "create.instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_kzm_instance_request
+msgid "demande d'instance"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model.fields,field_description:kzm_instance_request.field_kzm_instance_request__company_id
+msgid "invisible"
+msgstr ""
+
+#. module: kzm_instance_request
+#. odoo-python
+#: code:addons/kzm_instance_request/wizard/create_instance_order.py:0
+#, python-format
+msgid "list of instance created"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.ui.menu,name:kzm_instance_request.LATE
+msgid "list of late requests"
+msgstr ""
+
+#. module: kzm_instance_request
+#: model:ir.model,name:kzm_instance_request.model_perimeters
+msgid "perimeters"
+msgstr ""

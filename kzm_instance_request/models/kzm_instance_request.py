@@ -101,12 +101,14 @@ class KzmInstanceRequest(models.Model):
             users = self.env.ref('kzm_instance_request.manager_group').users
             for user in users:
                 self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id,
-                                       note=f' please submit the {self.ref_name} instance avant {self.limit_date}')
+                                       note=f' please submit the {self.name} instance avant {self.limit_date}')
             t2 = vals['limit_date']
             t2 = datetime.strptime(str(t2), '%Y-%m-%d')
             # print("----->", datetime.now(), "----->", t2)
             if t2 < datetime.now():
                 raise exceptions.UserError(_("You cannot set a deadline later than today"))
+            # cette fonction ca sera pas possible si on deplace l'instance sur la view gantt seulment si on change le type de champ
+            # limit_date à Datetime
 
         return super(KzmInstanceRequest, self).write(vals)
 
