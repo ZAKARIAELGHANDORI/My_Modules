@@ -1,31 +1,35 @@
 <odoo>
     <data>
 
-    <record model="ir.module.category" id="kzm_instance_request_categorie">
+        <record model="ir.module.category" id="kzm_instance_request_categorie">
             <field name="name">Instance Management</field>
             <field name="description">The instance management Applilcation</field>
 
-    </record>
+        </record>
 
-    <record id="user_group" model="res.groups">
-        <field name="name">Users group</field>
-        <field name="comment">Users group Permission Group.</field>
-        <field name="category_id" ref="kzm_instance_request_categorie"/>
-    </record>
+        <record id="user_group" model="res.groups">
+            <field name="name">Users group</field>
+            <field name="comment">Users group Permission Group.</field>
+            <field name="category_id" ref="kzm_instance_request_categorie"/>
+        </record>
 
-    <record id="manager_group" model="res.groups">
-        <field name="name">Manager group</field>
-        <field name="comment">Manager group Permission Group.</field>
-        <field name="category_id" ref="kzm_instance_request_categorie"/>
-        <field name="implied_ids" eval="[(4,ref('user_group'))]"/>
-    </record>
+        <record id="manager_group" model="res.groups">
+            <field name="name">Manager group</field>
+            <field name="comment">Manager group Permission Group.</field>
+            <field name="category_id" ref="kzm_instance_request_categorie"/>
+            <field name="implied_ids" eval="[(4,ref('user_group'))]"/>
+        </record>
 
-    <record id="admin_group" model="res.groups">
-        <field name="name">Admin group</field>
-        <field name="comment">Admin group Permission Group.</field>
-        <field name="category_id" ref="kzm_instance_request_categorie"/>
-        <field name="implied_ids" eval="[(4,ref('manager_group'))]"/>
-    </record>
+        <record id="admin_group" model="res.groups">
+            <field name="name">Admin group</field>
+            <field name="comment">Admin group Permission Group.</field>
+            <field name="category_id" ref="kzm_instance_request_categorie"/>
+            <field name="implied_ids" eval="[(4,ref('manager_group'))]"/>
+            <field
+                    name="users"
+                    eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
+        </record>
 
 
     </data>
