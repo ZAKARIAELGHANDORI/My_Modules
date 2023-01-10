@@ -169,7 +169,7 @@
             <field name="name">kzm.instance.request.view.kanban</field>
             <field name="model">kzm.instance.request</field>
             <field name="arch" type="xml">
-                <kanban create="false" group_create="false" sample="1">
+                <kanban create="false" group_create="false" sample="1" default_group_by="state">
                     <field name="name"/>
                     <field name="address"/>
                     <field name="cpu"/>
@@ -374,6 +374,8 @@
                     Create your first instance
                 </p>
             </field>
+
+
         </record>
 
         <record id="tout_action_window" model="ir.actions.act_window">
@@ -408,8 +410,6 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_filter_late_requests":1}</field>
 
-
-            <field name="search_view_id" ref="kzm_instance_view_search_demandes_en_retard"/>
         </record>
 
 
