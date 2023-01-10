@@ -101,7 +101,7 @@ class KzmInstanceRequest(models.Model):
             users = self.env.ref('kzm_instance_request.manager_group').users
             for user in users:
                 self.activity_schedule('kzm_instance_request.activity_mail_a_traite', user_id=user.id,
-                                       note=f' please submit the {self.name} instance avant {self.limit_date}')
+                                       note=f" veuillez soumettre l'instance {self.name} avant {self.limit_date}")
             t2 = vals['limit_date']
             t2 = datetime.strptime(str(t2), '%Y-%m-%d')
             # print("----->", datetime.now(), "----->", t2)
