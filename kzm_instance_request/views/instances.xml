@@ -144,8 +144,8 @@
                             <group>
                                 <field name="limit_date" required="true"
                                        attrs="{'readonly':[('state', '=', 'traite')]}"/>
-                                <field name="treat_date" attrs="{'readonly':[('state', '=', 'traite')]}"/>
-                                <field name="treat_duration" attrs="{'readonly':[('state', '=', 'traite')]}"/>
+                                <field name="treat_date" readonly="1"/>
+                                <field name="treat_duration" readonly="1"/>
                                 <field name="sale_order_id"/>
 
                             </group>

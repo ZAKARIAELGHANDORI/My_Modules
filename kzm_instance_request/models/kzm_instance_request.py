@@ -26,7 +26,7 @@ class KzmInstanceRequest(models.Model):
 
     partner_id = fields.Many2one(comodel_name='res.partner', string="Partner")
     tl_id = fields.Many2one(comodel_name='hr.employee', string="Employees")
-    tl_user_id = fields.Many2one(comodel_name='hr.employee', string="Employee")
+    tl_user_id = fields.Many2one(related='tl_id.user_id', string="Employee")
     odoo_id = fields.Many2one(comodel_name='odoo.version', string="Odoo version")
     perimeters_ids = fields.Many2many(comodel_name='perimeters', string="Perimeters")
     address_employee = fields.Many2one(related='tl_id.address_id', string="Employee address", readonly=False)
