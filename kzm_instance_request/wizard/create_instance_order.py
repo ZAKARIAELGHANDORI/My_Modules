@@ -23,6 +23,7 @@ class CreateInstanceOrder(models.Model):
         for x in self.sale_order_ids:
             val = self.env['kzm.instance.request'].create({
                 'cpu': self.cpu,
+                'ram': self.ram,
                 'disk': self.disk,
                 'limit_date': self.limit_date,
                 'tl_id': self.tl.id,
