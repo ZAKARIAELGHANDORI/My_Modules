@@ -335,7 +335,7 @@
 
                 <search>
                     <filter name="filter_late_requests" string="Late Requests"
-                            domain="[('limit_date', '&gt;', context_today() + datetime.timedelta(days=5))]"/>
+                            domain="[('limit_date', '&gt;', context_today() + datetime.timedelta(days=5)), ('state', '!=', 'traite')]"/>
 
                 </search>
 
