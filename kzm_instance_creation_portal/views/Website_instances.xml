@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="menu_instance_creation" model="website.menu">
+            <field name="name">My Instance Request</field>
+            <field name="url">/Create_instance</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">50</field>
+        </record>
+
+
+        <template id="portal_my_home_request" name="Show Instances / Instances" customize_show="True"
+                  inherit_id="portal.portal_my_home" priority="60">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My instances</t>
+                    <t t-set="url" t-value="'/Create_instance'"/>
+                    <t t-set="placeholder_count" t-value="'instance_count'"/>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="portal_my_home_menu_request" name="Portal layout : request menu entries"
+                  inherit_id="portal.portal_breadcrumbs" priority="20">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li t-if="page_name == 'instance'"
+                    t-attf-class="breadcrumb-item #{'active' if not instance else ''}">
+                    <a t-if="instance" t-attf-href="/Create_instance?{{ keep_query() }}">Instances</a>
+                    <t t-else="">Instances</t>
+                </li>
+                <li t-if="instance" class="breadcrumb-item active">
+                    <t t-out="instance.name"/>
+                </li>
+            </xpath>
+        </template>
+
+
+        <template id="create_instance" name="First page">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <section class="s_title parallax s_parallax_is_fixed bg-black-50 pt24 pb24" data-vcss="001"
+                             data-snippet="s_title" data-scroll-background-ratio="1">
+                        <span class="s_parallax_bg oe_img_bg"
+                              style="background-image: url('/web/image/website.s_banner_default_image'); background-position: 50% 0;"/>
+                        <div class="o_we_bg_filter bg-black-50"/>
+                        <div class="container">
+                            <h1>Create instance</h1>
+                        </div>
+                    </section> <br></br>
+                    <div class="oe_structure">
+                        <div class="container">
+                            <form role="form" action="/Create_request" method="POST">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group">
+                                    <label for="URL">URL</label>
+                                    <input class="form-control" style="width : 13cm" name="url"/>
+
+                                </div>
+                                <br></br>
+
+                                <div class="form-group">
+                                    <label for="name">CPU</label>
+                                    <input class="form-control" type="text" style="width : 13cm" name="cpu"/>
+
+                                </div>
+                                <br></br>
+                                <div class="form-group">
+                                    <label for="name">RAM</label>
+                                    <input class="form-control" type="text" style="width : 13cm" name="ram"/>
+
+                                </div>
+                                <br></br>
+                                <div class="form-group">
+                                    <label for="name">DISK</label>
+                                    <input class="form-control" type="text" style="width : 13cm" name="disk"/>
+
+                                </div>
+                                <br></br>
+                                <div class="form-group">
+                                    <label for="name">Limit Date</label>
+                                    <input class="form-control" type="date" style="width : 13cm" name="limit_date"/>
+
+                                </div>
+                                <br></br>
+                                <div class="clearfix oe_login_buttons">
+                                    <button type="submit" class="btn btn-primary pull-left">Create Instance</button>
+
+                                </div>
+                                <br></br>
+
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </t>
+
+
+        </template>
+
+
+        <template id="portal_my_instance_request" name="My Request">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+
+                    <t t-set="title">My Instances</t>
+
+                </t>
+                <t t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Designation #</th>
+                            <th class="text-end">Address IP</th>
+                            <th class="text-end">CPU</th>
+                            <th class="text-end">Partner</th>
+                            <th class="text-end">Employees</th>
+                            <th class="text-end">Employee</th>
+                            <th class="text-end">Odoo Version</th>
+                            <th class="text-end">Perimeters</th>
+                            <th class="text-end">RAM</th>
+                            <th class="text-end">DISK</th>
+                            <th class="text-end">URL</th>
+                            <th class="text-end">Processing deadline</th>
+                            <th class="text-end">Processing date</th>
+                            <th class="text-end">Processing time</th>
+                            <th class="text-end">State</th>
+
+                        </tr>
+                    </thead>
+                    <t t-foreach="instances" t-as="x">
+                        <tr>
+                            <td>
+
+                                <span t-field="x.name"/>
+
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.address"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.cpu"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.partner_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.tl_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.tl_user_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.odoo_id"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.perimeters_ids"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.ram"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.disk"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.url"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.limit_date"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.treat_date"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.treat_duration"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="x.state"/>
+
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

@@ -38,5 +38,5 @@ class CreateInstanceOrder(models.Model):
             'context': {},
             'domain': domain,
             'type': 'ir.actions.act_window',
-            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree')]
+            'views': [(self.env.ref('kzm_instance_request.list_view').id, 'tree'), (self.env.ref('kzm_instance_request.form_view').id, 'form')]
         }
