@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data noupdate="0">
         <record id="menu_instance_creation" model="website.menu">
             <field name="name">My Instance Request</field>
             <field name="url">/Create_instance</field>
@@ -46,50 +46,57 @@
                         <div class="container">
                             <h1>Create instance</h1>
                         </div>
-                    </section> <br></br>
+                    </section>
+                    <br></br>
                     <div class="oe_structure">
                         <div class="container">
-                            <form role="form" action="/Create_request" method="POST">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                <div class="form-group">
-                                    <label for="URL">URL</label>
-                                    <input class="form-control" style="width : 13cm" name="url"/>
+                            <div class="div1" style="display: inine-block">
+                                <form role="form" action="/Create_request" method="POST">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="state" value="soumise"/>
+                                    <div class="form-group">
+                                        <label for="url">URL</label>
+                                        <input class="form-control" style="width : 13cm" name="url"/>
 
+                                    </div>
+                                    <br></br>
+
+                                    <div class="form-group">
+                                        <label for="cpu">CPU</label>
+                                        <input class="form-control" type="text" style="width : 13cm" name="cpu"/>
+
+                                    </div>
+                                    <br></br>
+                                    <div class="form-group">
+                                        <label for="ram">RAM</label>
+                                        <input class="form-control" type="text" style="width : 13cm" name="ram"/>
+
+                                    </div>
+                                    <br></br>
+                                    <div class="form-group">
+                                        <label for="disk">DISK</label>
+                                        <input class="form-control" type="text" style="width : 13cm" name="disk"/>
+
+                                    </div>
+                                    <br></br>
+                                    <div class="form-group">
+                                        <label for="limit_date">Limit Date</label>
+                                        <input class="form-control" type="date" style="width : 13cm" name="limit_date"/>
+
+                                    </div>
+                                    <br></br>
+                                    <div class="clearfix oe_login_buttons">
+                                        <button type="submit" class="btn btn-primary pull-left">Create Instance</button>
+
+                                    </div>
+                                    <br></br>
+
+
+                                </form>
+                                <div class="div2" style="position: inline-block">
                                 </div>
-                                <br></br>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="name">CPU</label>
-                                    <input class="form-control" type="text" style="width : 13cm" name="cpu"/>
-
-                                </div>
-                                <br></br>
-                                <div class="form-group">
-                                    <label for="name">RAM</label>
-                                    <input class="form-control" type="text" style="width : 13cm" name="ram"/>
-
-                                </div>
-                                <br></br>
-                                <div class="form-group">
-                                    <label for="name">DISK</label>
-                                    <input class="form-control" type="text" style="width : 13cm" name="disk"/>
-
-                                </div>
-                                <br></br>
-                                <div class="form-group">
-                                    <label for="name">Limit Date</label>
-                                    <input class="form-control" type="date" style="width : 13cm" name="limit_date"/>
-
-                                </div>
-                                <br></br>
-                                <div class="clearfix oe_login_buttons">
-                                    <button type="submit" class="btn btn-primary pull-left">Create Instance</button>
-
-                                </div>
-                                <br></br>
-
-
-                            </form>
 
                         </div>
 
@@ -136,8 +143,9 @@
                         <tr>
                             <td>
 
-                                <span t-field="x.name"/>
-
+                                <a t-attf-href="/Create_instance">
+                                    <t t-out="x.name"/>
+                                </a>
                             </td>
                             <td class="text-end">
                                 <span t-field="x.address"/>
