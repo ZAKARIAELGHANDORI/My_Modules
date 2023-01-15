@@ -31,7 +31,7 @@ for rec in instances
 
 commandes = models.execute_kw(db, uid, password, 'sale.order', 'search_read', [[['state' , '=', 'state you want']]])
 for rec in commandes
-   print(rec)
+   print(rec) 
 
 
  
