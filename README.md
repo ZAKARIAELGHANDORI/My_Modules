@@ -29,7 +29,7 @@ for rec in instances
    
 ## Option de récupération des commandes par statut 
 
-commandes = models.execute_kw(db, uid, password, 'kzm.instance.request', 'search_read', [['state' , '=', 'state you want']])
+commandes = models.execute_kw(db, uid, password, 'kzm.instance.request', 'search_read', [[['state' , '=', 'state you want']]])
 for rec in commandes
    print(rec)
 
