@@ -30,8 +30,8 @@ for rec in instances
 ## Option de récupération des commandes par statut 
 
 commandes = models.execute_kw(db, uid, password, 'sale.order', 'search_read', [[['state' , '=', 'state you want']]])
-for rec in commandes
-   print(rec) 
+for x in commandes
+   print(x) 
 
 
  
