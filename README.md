@@ -11,6 +11,8 @@ password = 'admin'
 
 import xmlrpc.client
 
+common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
+
 uid = common.authenticate(db, username, password, {})
 
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
@@ -24,16 +26,12 @@ print("the new record ID created is : ", id)
 ## Options de récupération de toutes les demandes
 instances = models.execute_kw(db, uid, password, 'kzm.instance.request', 'search_read', [[]], {'fields': ['name', 'cpu', 'ram', 'disk', 'odoo_id', 'tl_id', 'tl_user_id'
 , 'address', 'limit_date', 'treat_date', 'treat_duration', 'url']})
-for rec in instances
+for rec in instances:
    print(rec)
    
 ## Option de récupération des commandes par statut 
 
-commandes = models.execute_kw(db, uid, password, 'sale.order', 'search_read', [[['state' , '=', 'state you want']]])
-for x in commandes
+commandes = models.execute_kw(db, uid, password, 'sale.order', 'search_read', [[['state' , '=', 'state you want']]], {
+    'fields': ['name', 'partner_id', 'create_date', 'user_id', 'amount_total', 'state']})
+for x in commandes:
    print(x) 
-
-
- 
- 
-
