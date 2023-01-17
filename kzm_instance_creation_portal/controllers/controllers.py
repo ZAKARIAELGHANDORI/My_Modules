@@ -48,6 +48,57 @@ class CreateInstancePortal(http.Controller):
 
         })
 
+    @http.route(['/Create_instance/update/<int:instance_id>', '/Create_instance/update/'],
+                auth='public', website=True)
+    def update_request(self, instance_id=None, **kw):
+        data = {
+            'limit_date': kw.get('limit_date'),
+            'ram': kw.get('ram'),
+            'url': kw.get('url'),
+            'disk': kw.get('disk'),
+        }
+        print(kw.get('update'))
+        print(kw.get('delete'))
+
+        print(kw.get('url'))
+        request.env['kzm.instance.request'].sudo().browse(instance_id).write(data)
+        print('update succeeded')
+        """if kw.get('delete'):
+            request.env['kzm.instance.request'].sudo().browse(instance_id).unlink()
+            print('deleting succeeded')"""
+
+        create_id = request.env.context.get('uid')
+        instances = http.request.env['kzm.instance.request'].search([('create_uid', '=', create_id)])
+        return http.request.render('kzm_instance_creation_portal.portal_my_instance_request', {
+            'instances': instances,
+
+        })
+
+    @http.route(['/Create_instance/delete/<int:instance_id>'],
+                auth='public', website=True)
+    def delete_request(self, instance_id=None, **kw):
+        request.env['kzm.instance.request'].sudo().browse(instance_id).unlink()
+        print('deleting succeeded')
+
+        create_id = request.env.context.get('uid')
+        instances = http.request.env['kzm.instance.request'].search([('create_uid', '=', create_id)])
+        return http.request.render('kzm_instance_creation_portal.portal_my_instance_request', {
+            'instances': instances,
+
+        })
+
+    @http.route([
+        "/Create_instance/<int:instance_id>",
+        # "/Create_instance/<int:id>/<access_token>"
+    ], type='http', auth="user", website=True)
+    def display_instance_form(self, instance_id=None):
+        instance = request.env['kzm.instance.request'].sudo().search([('id', '=', instance_id)], limit=1)
+        # print(instance.name)
+        return http.request.render('kzm_instance_creation_portal.display_instance_form', {
+            'instance': instance,
+            'instance_id': instance_id,
+        })
+
     def _prepare_portal_layout_values(self):
         print("ttt")
 
@@ -140,7 +191,7 @@ class CreateInstancePortal(http.Controller):
             # 'inst': inst,
             # 'pager': pager,
             # 'grouped_signatures': grouped_signatures,
-            #'grouped_tickets': grouped_tickets,
+            # 'grouped_tickets': grouped_tickets,
             'grouped_appointments': grouped_appointments,
             'page_name': 'instance',
             'default_url': '/Create_instance',
