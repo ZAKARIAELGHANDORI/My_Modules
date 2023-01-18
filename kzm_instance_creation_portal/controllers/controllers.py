@@ -11,6 +11,7 @@ from odoo.tools import groupby as groupbyelem
 from operator import itemgetter
 
 
+
 class InstanceCount(CustomerPortal):
     def _prepare_home_portal_values(self, counters):
         values = super(InstanceCount, self)._prepare_home_portal_values(counters)
@@ -30,7 +31,7 @@ class CreateInstancePortal(http.Controller):
         instances = http.request.env['kzm.instance.request'].search([('create_uid', '=', create_id)])
         return http.request.render('kzm_instance_creation_portal.portal_my_instance_request', {
             'instances': instances,
-            'page_name': 'instance'
+            'page_name': 'instance',
 
         })
 
@@ -57,16 +58,7 @@ class CreateInstancePortal(http.Controller):
             'url': kw.get('url'),
             'disk': kw.get('disk'),
         }
-        print(kw.get('update'))
-        print(kw.get('delete'))
-
-        print(kw.get('url'))
         request.env['kzm.instance.request'].sudo().browse(instance_id).write(data)
-        print('update succeeded')
-        """if kw.get('delete'):
-            request.env['kzm.instance.request'].sudo().browse(instance_id).unlink()
-            print('deleting succeeded')"""
-
         create_id = request.env.context.get('uid')
         instances = http.request.env['kzm.instance.request'].search([('create_uid', '=', create_id)])
         return http.request.render('kzm_instance_creation_portal.portal_my_instance_request', {
@@ -123,6 +115,29 @@ class CreateInstancePortal(http.Controller):
             search_domain = OR([search_domain, [('cpu', 'ilike', search)]])
         return search_domain
 
+    @http.route(['/Create_instance/pdf/<int:instance_id>/download'], type='http', auth="user", website=True)
+    def invoice_pdf(self, instance_id, **kwargs):
+        instance = request.env['kzm.instance.request'].browse(instance_id)
+        pdf = request.env['ir.actions.report'].sudo()._render_qweb_pdf('kzm_instance_request.kzm_instance_report', [instance.id])[0]
+        pdfhttpheaders = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Length', len(pdf)),
+            ('Content-Disposition', '%s' % instance.name)
+        ]
+        return request.make_response(pdf, headers=pdfhttpheaders)
+
+    """def portal_instance_report(self, instance_id, access_token=None, **kw):
+        instance = request.env['kzm.instance.request'].sudo().search([('id', '=', instance_id)], limit=1)
+        pdf = request.env.ref('report_for_instance_request_portal')
+        pdf_http_headers = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Length', len(pdf)),
+        ]
+        return {
+            request.make_response(pdf, headers=pdf_http_headers), instance
+            }"""
+
+
     @http.route('/Create_instance', auth='public', website=True)
     def display_instances(self, page=1, date_begin=None, date_end=None, sortby=None, filterby='all', search=None,
                           groupby='none', search_in='content'):
@@ -172,27 +187,24 @@ class CreateInstancePortal(http.Controller):
         if search and search_in:
             domain = AND([domain, self._get_instance_search_domain(search_in, search)])
 
-        # if groupby == 'state':
-        #   order = 'state, %s' % order
+        if groupby == 'state':
+            order = 'state, %s' % order
 
-        # inst = http.request.env['kzm.instance.request'].search(domain, order=order)
+        inst = http.request.env['kzm.instance.request'].search(domain, order=order)
 
         instances = http.request.env['kzm.instance.request'].search(domain, order=order)
 
-        grouped_appointments = False
-        if groupby_field:
-            grouped_appointments = [(g, instances.concat(*events)) for g, events in
-                                    groupbyelem(instances, itemgetter(groupby_field))]
-
-        # instance_count = insts.search_count(domain)
-
+        # colis = Colis.search(domain, order=order)
+        # request.session['my_instances_history'] = inst.ids[:100]
+        """if groupby == 'state':
+            grouped_inst = [request.env['kzm.instance.request'].concat(*g) for
+                            k, g in
+                            groupbyelem(inst, itemgetter('state'))]"""
         return http.request.render('kzm_instance_creation_portal.portal_my_instance_request', {
             'instances': instances,
-            # 'inst': inst,
+            'inst': inst,
+            # 'grouped_inst': grouped_inst,
             # 'pager': pager,
-            # 'grouped_signatures': grouped_signatures,
-            # 'grouped_tickets': grouped_tickets,
-            'grouped_appointments': grouped_appointments,
             'page_name': 'instance',
             'default_url': '/Create_instance',
             'searchbar_sortings': searchbar_sortings,

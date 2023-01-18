@@ -9,6 +9,32 @@
         </record>
 
 
+        <!--  <record id="portal_error_update" model="website.page">
+              <field name="url">/Create_instance/update/</field>
+              <field name="is_published">True</field>
+              <field name="name">Error update</field>
+              <field name="type">qweb</field>
+              <field name="key">error_update</field>
+              <field name="arch" type="xml">
+                  <t name="Error update" t-name="error_update">
+                      <t t-call="website.layout">
+                          <div id="wrap">
+                              <div class="container">
+                                  <h1>Error Update</h1>
+                                  <div class="alert alert-success" role="status">
+                                      not processed
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </t>
+
+                  </t>
+              </field>
+          </record> -->
+
+
         <template id="portal_my_home_request" name="Show Instances / Instances" customize_show="True"
                   inherit_id="portal.portal_my_home" priority="60">
             <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
@@ -24,38 +50,45 @@
                   inherit_id="portal.portal_breadcrumbs" priority="20">
             <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
                 <li t-if="page_name == 'instance'"
-                    t-attf-class="breadcrumb-item #{'active' if not instance else ''}">
-                    <a t-if="instance" t-attf-href="/Create_instance?{{ keep_query() }}">Instances</a>
+                    t-attf-class="breadcrumb-item #{'active' if not instances else ''}">
+                    <a t-if="instances" t-attf-href="/Create_instance?{{ keep_query() }}">Instances</a>
                     <t t-else="">Instances</t>
                 </li>
-                <li t-if="instance" class="breadcrumb-item active">
-                    <t t-filed="instance.name"/>
+                <li t-if="instances" class="breadcrumb-item active">
+                    <t t-filed="instances.name"/>
                 </li>
-                <li>
- ///////////
-                </li>
-
+                <span t-if="page_name == 'instance'" style="margin-left: 7.9cm">
+                    <a id="submit-ticket" t-attf-href="/Create_Instance">
+                        <button class="btn btn-secondary" style="height:0.8cm; padding:4px">
+                            <center>Create an Instance</center>
+                        </button>
+                    </a>
+                </span>
             </xpath>
         </template>
 
 
-        <template id="instance_detail" name="My instance">
+        <!--  <template priority="100" id="new_searchbar"
+                    inherit_id="portal.portal_searchbar">
+              <xpath expr="//span[hasclass('input-group-append')]" position="inside">
+                  <button class="btn btn-secondary" type="button" id="list_view">
+                      <span class="fa fa-list"/>
+                  </button>
+              </xpath>
+          </template> -->
+
+
+        <template id="portal_my_instances" name="My Instances">
             <t t-call="portal.portal_layout">
                 <t t-set="o_portal_fullwidth_alert">
                     <t t-call="portal.portal_back_in_edit_mode">
                         <t t-set="backend_url"
-                           t-value="'/web#model=kzm.instance.creation.portal&amp;id=%s&amp;view_type=form' % (instance.id)"/>
+                           t-value="'/web#model=kzm.instance.request&amp;id=%s&amp;' % (instances.id)"/>
                     </t>
                 </t>
-                <t t-call="portal.portal_record_layout">
-                    <t t-set="card_header">
-                        <h5 class="mb-0">
-                            <small class="text-muted">Instance -</small>
-                            <span t-field="instance.name"/>
-                            <span class="float-right">
-                            </span>
-                        </h5>
-                    </t>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Instances</t>
                 </t>
             </t>
         </template>
@@ -79,7 +112,7 @@
                             <div class="div1" style="display: inine-block">
                                 <form role="form" action="/Create_request" method="POST">
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                    <input type="hidden" name="state" value="soumise"/>
+                                    <input type="hidden" name="state" value="brouillon"/>
                                     <div class="form-group">
                                         <label for="url">URL</label>
                                         <input class="form-control" style="width : 13cm" name="url"/>
@@ -150,11 +183,7 @@
 
                 <t t-call="portal.portal_table">
                     <h4>
-                        <a id="submit-ticket" t-attf-href="/Create_Instance">
-                            <button class=" badge rounded-pill text-bg-info">
-                                Create an Instance
-                            </button>
-                        </a>
+
                     </h4>
                     <thead>
                         <tr class="active">
@@ -252,10 +281,13 @@
                             <t t-set="classes" t-value="'col-lg-3 d-print-none'"/>
 
                             <t t-set="entries">
+
                                 <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+
                                     <li id="task-nav" class="list-group-item ps-0 flex-grow-1 d-flex align-items-center"
                                         t-ignore="true"
                                         role="complementary">
+
                                         <ul class="nav flex-column">
                                             <li class="nav-item" id="nav-header">
                                                 <a class="nav-link ps-3" href="/Create_instance"
@@ -272,6 +304,14 @@
                                             </li>
                                         </ul>
                                     </li>
+                                   <center><div class="btn-group flex-grow-1 mb-1" style="width: 5cm">
+                                        <a class="btn btn-secondary o_print_btn o_portal_invoice_print"
+                                           t-attf-href="/Create_instance/pdf/#{instance.id}/download"
+                                           id="kzm_instance_report" title="Print" target="_blank">
+                                            <i class="fa fa-print"/>
+                                            Print
+                                        </a>
+                                    </div> </center>
                                 </ul>
                             </t>
                         </t>
@@ -289,8 +329,9 @@
                                                     <span t-field="instance.id"/>
                                                     )
                                                 </small>
-                                                <a t-attf-href="/Create_instance/delete/#{instance.id}">
-                                                    <button class=" badge rounded-pill text-bg-info"
+                                                <a t-attf-href="/Create_instance/delete/#{instance.id}"
+                                                   style="margin-left: 0.5cm">
+                                                    <button class="btn btn-primary"
                                                             name="delete" t-att-value="instance.id">
                                                         Delete request
                                                     </button>
@@ -365,10 +406,20 @@
 
                                 </div>
                                 <div class="col-12 col-md-6" name="portal_my_task_second_column"/>
+
                             </div>
 
 
                         </div>
+                        <!-- <div class="o_portal_messages_container mt32" id="instance_chat" data-anchor="true">
+                            <h4>
+                                <strong>Message and communication history</strong>
+                            </h4>
+                            <t t-call="portal.message_thread">
+                                <t t-set="token" t-value="instance.id"/>
+                                <t t-set="disable_composer" t-value="instance.state"/>
+                            </t>
+                        </div> -->
                     </div>
                 </t>
 

@@ -85,7 +85,15 @@
 
         </template>
 
+        <template id="kzm_instance_report_portal">
+            <t t-call="web.external_layout">
+                <t t-call="web.html_container">
+                     <h1>HELLO MDF</h1>
 
+                </t>
+            </t>
+
+        </template>
     </odoo>
 
 </odoo>
